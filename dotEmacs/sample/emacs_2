@@ -1,0 +1,146 @@
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;; )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PATH TO LOAD EMACS CHUNK FILES     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "/mnt/Programs/utilities/dotEmacs/")
+(load "tnt_package.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ERLANG MODE                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;--------------------------------------
+;; [erlRecordLookup]
+(add-to-list 'load-path "/mnt/Programs/erlRecordLookup/")
+(load "tnt_erlRecordLookup.el")
+
+;;--------------------------------------
+;; [EDTS]
+(load "tnt_edts.el")
+
+;;--------------------------------------
+;; [Flymake Erlang]
+;; Below command is commented to avoid confusing with elpa's flymake.el
+;; (add-to-list 'load-path "/mnt/Programs/emacs-flymake/")
+(setq path-to-erl-flymake-escript
+      "/mnt/Programs/problems/_ERLANG_/escripts/flymake/flymake_erlang.es")
+(load "tnt_flymake-erlang.el")
+
+;;--------------------------------------
+;; [Normal Erlang]
+(load "tnt_erlang-mode.el")
+
+;;--------------------------------------
+;; [Distel]
+(add-to-list 'load-path "/mnt/Programs/distel/elisp/")
+(load "tnt_distel.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PYTHON MODE                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_python.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; COMMON SETTINGS                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;--------------------------------------
+;; [emacsmp]
+;; Included:
+;;   - cmdlist
+;;     Used to conveniently run Linux commands from Emacs
+(add-to-list 'load-path "/mnt/Programs/emacsmp/")
+(load "tnt_emacsmp.el")
+
+;;--------------------------------------
+;; [xclip]
+;; Used to copy from emacs no window to X11 clipboard
+(add-to-list 'load-path "/mnt/Programs/utilities/dotEmacs/add-ins/xclip_emacs/")
+(load "tnt_xclip.el")
+
+;;--------------------------------------
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;;--------------------------------------
+;; Enable line numbers globally
+(global-linum-mode t)
+
+;;--------------------------------------
+;; Removing the default start-up buffer
+(setq inhibit-startup-message t)
+
+;;--------------------------------------
+;; Removing the default start-up screen
+'(inhibit-startup-screen t)
+
+;;--------------------------------------
+;; Change yes-or-no to y-or-n
+(fset `yes-or-no-p `y-or-n-p)
+
+;;--------------------------------------
+;; Auto-save
+(setq auto-save-default nil)
+
+;;--------------------------------------
+;; Match parentheses
+(show-paren-mode t)
+
+;;--------------------------------------
+;; Show line-number in the mode line
+(line-number-mode 1)
+
+;;--------------------------------------
+;; Show column-number in the mode line
+(column-number-mode 1)
+
+;;--------------------------------------
+;; Enable clipboard
+(setq x-select-enable-clipboard t)
+
+;;--------------------------------------
+;; Split horizontally when comparing files by ediff
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;;--------------------------------------
+;; Start in full-screen mode
+(defun toggle-fullscreen ()
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+)
+(if (display-graphic-p)
+    (toggle-fullscreen))
+
+;;--------------------------------------
+;; Trailing whitespace
+;; Mark the trailing whitespace clearly
+;; If you open a file which has a lot of trailing whitespaces
+;; you can use Meta (alt x) delete-trailing-whitespace
+(setq-default show-trailing-whitespace t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(put 'upcase-region 'disabled nil)
+
+;;--------------------------------------
+;; Line by line scrolling
+(setq scroll-step 1)
+
+;;--------------------------------------
+;; Color theme tuantran
+(load "tnt_color-theme.el")
