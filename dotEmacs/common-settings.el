@@ -3,6 +3,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;--------------------------------------
+;; Use spaces instead of tab
+(setq-default indent-tabs-mode nil)
+
+;;--------------------------------------
 ;; Set tab width to value
 (setq tab-width 4)
 
@@ -164,10 +168,6 @@
 (diff-hl-mode)
 (diff-hl-flydiff-mode)
 (diff-hl-margin-mode)
-
-;;--------------------------------------
-;; Use spaces instead of tab
-(setq indent-tabs-mode nil)
 
 ;;--------------------------------------
 ;; Example on adding a hook
