@@ -3,6 +3,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;--------------------------------------
+;; Unicode
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
+;;--------------------------------------
+;; Disable backup
+(setq backup-inhibited t)
+
+;;--------------------------------------
+;; Disable auto save
+(setq auto-save-default nil)
+
+;;--------------------------------------
 ;; Use spaces instead of tab
 (setq-default indent-tabs-mode nil)
 
