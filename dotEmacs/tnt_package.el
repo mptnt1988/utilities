@@ -5,14 +5,14 @@
 ;;     (load "tnt_package.el")
 (require 'package)
 
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-	     '("elpa" . "http://elpa.gnu.org/packages/"))
 ;; (add-to-list 'package-archives
-;; 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+;; 	     '("melpa" . "http://melpa.org/packages/") t)
+;; (add-to-list 'package-archives
+;; 	     '("elpa" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+;; (add-to-list 'package-archives
+;; 	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (package-initialize)
 (when (not package-archive-contents)
