@@ -40,10 +40,6 @@
 (fset `yes-or-no-p `y-or-n-p)
 
 ;;--------------------------------------
-;; Color for selected text
-(set-face-background 'region "black")
-
-;;--------------------------------------
 ;; Auto-save
 (setq auto-save-default nil)
 

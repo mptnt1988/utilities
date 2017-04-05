@@ -5,6 +5,17 @@
 ;;   then
 ;;     (load "tnt_color-theme.el")
 
+(defvar myPkgs_color_theme
+  '(color-theme
+    ))
+
+(mapc #'(lambda (package)
+    (unless (package-installed-p package)
+      (package-install package)))
+      myPkgs_color_theme)
+
+(require 'color-theme)
+
 (defun color-theme-tuantran ()
   (color-theme-install
    '(color-theme-tuantran
@@ -30,7 +41,7 @@
      (diary-face ((t (:foreground "#FFFFAFAF0000"))))
      (calendar-today-face ((t (:underline t))))
      (holiday-face ((t (:background "#CDCD00000000"))))
-     (show-paren-match-face ((t (:background "#00005F5F8787"))))
+     (show-paren-match-face ((t (:background "#FFFF5F5F8787"))))
      (show-paren-mismatch-face ((t (:foreground "#E5E5E5E5E5E5" :background "#CDCD00000000"))))
      (font-lock-comment-face ((t (:foreground "#FFFF00000000"))))
      (font-lock-string-face ((t (:foreground "#FFFFAFAF0000"))))
@@ -181,4 +192,6 @@
      (gnus-cite-face-9 ((t (:foreground "#FFFF8787FFFF"))))
      (gnus-cite-face-10 ((t (:foreground "#87875F5FD7D7"))))
      (gnus-cite-face-11 ((t (:foreground "#5F5FD7D7D7D7")))))))
-(color-theme-tuantran)
+
+(if (fboundp 'color-theme-tuantran)
+    (color-theme-tuantran))

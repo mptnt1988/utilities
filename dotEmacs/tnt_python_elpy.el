@@ -3,14 +3,14 @@
 ;;     (add-to-list 'load-path "/path/to/this/file")
 ;;   then
 ;;     (load "tnt_python_elpy.el")
-(defvar myPackages
+(defvar myPkgs_python_elpy
   '(elpy ; Python package
     ))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
-      myPackages)
+      myPkgs_python_elpy)
 
 ;;;;;;;;;;;;;;
 ;;; CUSTOM ;;;
@@ -25,5 +25,7 @@
 ;; Remap jumping-back-from-definition to "M-," instead of "M-*"
 (define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
 
-;; Add path to flake8 to exec-path (if installed as an Emacs package)
-;; (add-to-list 'exec-path "/home/tuantran/.local/bin")
+;; Add bin path to exec-path (if installed as an Emacs package)
+;; (add-to-list 'exec-path
+;;              (substitute-in-file-name "/home/$USER/.local/bin")
+;;              )

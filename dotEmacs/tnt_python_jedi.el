@@ -3,14 +3,15 @@
 ;;     (add-to-list 'load-path "/path/to/this/file")
 ;;   then
 ;;     (load "tnt_python_jedi.el")
-(defvar myPackages
-  '(jedi
+(defvar myPkgs_python_jedi
+  '(virtualenv
+    jedi
     ))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
-      myPackages)
+      myPkgs_python_jedi)
 
 ;;;--------------------
 ;;; BASIC CONFIGURATION
