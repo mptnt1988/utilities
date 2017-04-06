@@ -25,7 +25,7 @@
 ;; Remap jumping-back-from-definition to "M-," instead of "M-*"
 (define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
 
-;; Add bin path to exec-path (if installed as an Emacs package)
-;; (add-to-list 'exec-path
-;;              (substitute-in-file-name "/home/$USER/.local/bin")
-;;              )
+;; Add PIP packages' bin path to exec-path
+(add-to-list 'exec-path
+             (substitute-in-file-name "/home/$USER/.local/bin")
+             )

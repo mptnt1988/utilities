@@ -1,3 +1,11 @@
+;; Introduction:
+;;   This module is used for setup and configure both Elpy and Jedi for Python
+;; Note:
+;;   Add path to this file to 'load-path
+;;     (add-to-list 'load-path "/path/to/this/file")
+;;   then
+;;     (load "tnt_python.el")
+
 (defvar myPkgs_python
   '(virtualenv
     jedi
@@ -18,6 +26,14 @@
 
 ;; Set Elpy RPC backend to Jedi
 (setq elpy-rpc-backend "jedi")
+
+;; Remap jumping-back-from-definition to "M-," instead of "M-*"
+(define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
+
+;; Add PIP packages' bin path to exec-path
+(add-to-list 'exec-path
+             (substitute-in-file-name "/home/$USER/.local/bin")
+             )
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; JEDI CONFIGURATION
@@ -98,6 +114,8 @@
 ;;-------------
 ;; Key bindings
 ;;-------------
+;; Tuan: Below key bindings for "M-." and "M-," will only be active when
+;;       elpy-mode is disabled. Otherwise, above Elpy setup takes place.
 (defun jedi-config:setup-keys()
   (local-set-key (kbd "M-.") 'jedi:goto-definition)
   (local-set-key (kbd "M-,") 'jedi:goto-definition-pop-marker)
