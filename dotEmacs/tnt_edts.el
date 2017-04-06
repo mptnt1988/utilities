@@ -18,5 +18,6 @@
 (defun my-edts-after-init-hook ()
   (unless (ignore-errors (require 'edts-start))
     (warn "EDTS is not installed in this environment!")))
-(add-hook 'after-init-hook 'my-edts-after-init-hook)
+;; (add-hook 'after-init-hook 'my-edts-after-init-hook)
+(add-hook 'erlang-mode-hook 'my-edts-after-init-hook)
 ;;------------ end part 2 ---------------
