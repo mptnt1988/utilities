@@ -4,7 +4,8 @@
 ;;   then
 ;;     (load "tnt_python_elpy.el")
 (defvar myPkgs_python_elpy
-  '(elpy ; Python package
+  '(
+    elpy
     ))
 
 (mapc #'(lambda (package)

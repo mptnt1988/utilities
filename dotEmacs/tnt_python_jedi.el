@@ -4,7 +4,7 @@
 ;;   then
 ;;     (load "tnt_python_jedi.el")
 (defvar myPkgs_python_jedi
-  '(virtualenv
+  '(
     jedi
     ))
 
