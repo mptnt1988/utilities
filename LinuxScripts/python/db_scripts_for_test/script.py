@@ -2,6 +2,7 @@
 import ConfigParser
 import sys
 import os.path
+import getopt
 from collections import OrderedDict
 from sqlalchemy import *
 from sqlalchemy_utils import database_exists, create_database, drop_database
@@ -70,7 +71,6 @@ def get_config(config):
                 splittedCol = col.split('=')
                 qElem['data'][splittedCol[0]] = splittedCol[1]
             sqls.append(qElem)
-    print sqls
     loaded_config['sqls'] = sqls
     return loaded_config
 
@@ -103,7 +103,7 @@ def load_config(filename):
                 OrderedDict.__setitem__(self, key, value)
 
     config = ConfigParser.RawConfigParser(dict_type=MultiOrderedDict)
-    config.read(sys.argv[1])
+    config.read(filename)
     return config
 
 
@@ -115,8 +115,42 @@ def insert_data(engine, sqls):
                         ") VALUES (" + ','.join(sql['data'].values()) + ")")
 
 
+def drop_schema(filename):
+    config = load_config(filename)
+    check_config(config)
+    fullConfig = get_config(config)
+    dbInfo = fullConfig['database']
+    engineUrl = dbInfo['dbtype'] + "://" + dbInfo['dbuser'] + ":" + dbInfo['dbpwd'] + \
+        "@" + dbInfo['dbhost'] + ":" + dbInfo['dbport'] + "/" + dbInfo['dbname']
+    engine = create_engine(engineUrl, echo=False)
+    if database_exists(engine.url):
+        drop_database(engine.url)
+
+
+def print_color(text):
+    print '\033[31m' + text + '\033[0m'
+
+
+def print_help(scriptFile):
+    print_color("***USAGE***")
+    print "\t-h/--help"
+    print "\t-d/--drop"
+
+
 if __name__ == "__main__":
-    config = load_config(sys.argv[1])
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hd:", ["help", "drop="])
+    except getopt.GetoptError, err:
+        print "Error while parsing arguments..."
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print_help()
+            sys.exit()
+        if opt in ("-d"):
+            drop_schema(arg)
+            sys.exit()
+    config = load_config(args[0])
     check_config(config)
     fullConfig = get_config(config)
     engine = recreate_schema(fullConfig['database'], fullConfig['tables'])
