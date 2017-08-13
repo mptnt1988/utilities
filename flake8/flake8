@@ -1,0 +1,5 @@
+# Windows: ~/.flake8
+# Other OSs: ~/.config/flake8
+[flake8]
+max-line-length = 99
+ignore = E402
