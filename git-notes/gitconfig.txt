@@ -23,15 +23,14 @@
     header = white
     untracked = cyan
 [alias]
-    a = add
-    st = status
-    co = checkout
-    br = branch
-    cm = commit
-    lw = log -p --word-diff
-    tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    lol = log --graph --decorate --pretty=short --all --abbrev-commit
-    hist = log --pretty=format:'%Cred%h %C(yellow)%d %Creset%s %C(bold blue)<%an>%Creset' --abbrev-commit --graph --date=short
+    a     = add
+    st    = status
+    co    = checkout
+    br    = branch
+    cm    = commit
+    tree  = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=short
+    treer = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=relative
+    treei = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=iso
 [status]
 	showUntrackedFiles = no
 [merge]
