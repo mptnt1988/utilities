@@ -131,7 +131,7 @@ def print_color(text):
     print '\033[31m' + text + '\033[0m'
 
 
-def print_help(scriptFile):
+def print_help():
     print_color("***USAGE***")
     print "\t-h/--help"
     print "\t-d/--drop"
