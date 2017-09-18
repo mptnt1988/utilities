@@ -197,3 +197,26 @@
 ;;--------------------------------------
 ;; Line by line scrolling
 (setq scroll-step 1)
+
+;;--------------------------------------
+;; Tab key to indent, untab and delete trailing whitespace
+(defun tab-space-indent ()
+  (interactive)
+  (save-excursion (indent-for-tab-command))
+  (if (use-region-p)
+      (let*
+          ((firstline (line-number-at-pos (region-beginning)))
+           (lastline (line-number-at-pos (region-end)))
+           (firstpoint (lambda () (save-excursion
+                                    (goto-line firstline)
+                                    (line-beginning-position))))
+           (lastpoint (lambda () (save-excursion
+                                   (goto-line lastline)
+                                   (line-end-position)))))
+        (delete-trailing-whitespace (funcall firstpoint) (funcall lastpoint))
+        (untabify (funcall firstpoint) (funcall lastpoint)))
+    (delete-trailing-whitespace (line-beginning-position) (line-end-position))
+    (untabify (line-beginning-position) (line-end-position))))
+
+(local-set-key (kbd "TAB") 'tab-space-indent)
+(global-set-key (kbd "TAB") 'tab-space-indent)
