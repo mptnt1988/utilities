@@ -197,3 +197,13 @@
 ;;--------------------------------------
 ;; Line by line scrolling
 (setq scroll-step 1)
+
+;;--------------------------------------
+;; Comment and copy
+(defun mp-cs-comment-copy ()
+  (interactive)
+  (if (not (use-region-p))
+      (comment-dwim nil)
+    (save-excursion (kill-ring-save (region-beginning) (region-end) 1))
+    (comment-dwim nil)))
+(global-set-key "\M-;" 'mp-cs-comment-copy)
