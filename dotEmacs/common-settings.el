@@ -3,6 +3,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;--------------------------------------
+;; Set keybindings
+(global-set-key "\C-l" 'goto-line)
+(global-set-key "\C-r" 'query-replace)
+(global-set-key [f5] 'my-next-long-line)
+(global-set-key (kbd "C-x M-b") 'ibuffer)
+(global-set-key (kbd "C-M-y") 'x-clipboard-yank)
+;; define arrow-keys for no-window-emacs
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\M-[1;5C" [C-right])
+(define-key input-decode-map "\M-[1;5D" [C-left])
+
+;;--------------------------------------
 ;; Unicode
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -42,23 +55,6 @@
 ;;--------------------------------------
 ;; Auto-save
 (setq auto-save-default nil)
-
-;;--------------------------------------
-;; Set keybindings
-(global-set-key "\C-l" 'goto-line)
-(global-set-key "\C-r" 'query-replace)
-(global-set-key [f5] 'my-next-long-line)
-(global-set-key [f6] 'erl-node-choosing)
-(global-set-key [f7] 'default-bookmark-load)
-(global-set-key [f8] 'bookmark-save)
-(global-set-key [f9] 'bookmark-delete)
-(global-set-key [f10] 'revert-all-buffers)
-(global-set-key (kbd "C-x M-b") 'ibuffer)
-;; define arrow-keys for no-window-emacs
-(define-key input-decode-map "\e[1;5A" [C-up])
-(define-key input-decode-map "\e[1;5B" [C-down])
-(define-key input-decode-map "\M-[1;5C" [C-right])
-(define-key input-decode-map "\M-[1;5D" [C-left])
 
 ;;--------------------------------------
 ;; Match parentheses
