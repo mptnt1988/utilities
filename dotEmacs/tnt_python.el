@@ -1,10 +1,14 @@
 ;; Introduction:
 ;;   This module is used for setup and configure both Elpy and Jedi for Python
-;; Note:
+;; Note 1:
 ;;   Add path to this file to 'load-path
 ;;     (add-to-list 'load-path "/path/to/this/file")
 ;;   then
 ;;     (load "tnt_python.el")
+;; Note 2:
+;;   By default, Elpy uses python 2
+;;   To switch it to python 3, insert this in .emacs:
+;;     (setq elpy-rpc-python-command "python3")
 
 (defvar myPkgs_python
   '(virtualenv
