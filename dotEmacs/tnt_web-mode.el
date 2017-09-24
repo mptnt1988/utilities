@@ -6,7 +6,6 @@
 
 (defvar myPkgs_web
   '(
-    smartparens
     web-mode
     php-mode
     ))
@@ -15,11 +14,6 @@
           (unless (package-installed-p package)
             (package-install package)))
       myPkgs_web)
-
-;;------------------
-;; SMARTPARENS MODE
-;;------------------
-(require 'smartparens)
 
 ;;------------------
 ;; WEB MODE
@@ -49,12 +43,16 @@
   )
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-(defun sp-web-mode-is-code-context (id action context)
-  (and (eq action 'insert)
-       (not (or (get-text-property (point) 'part-side)
-                (get-text-property (point) 'block-side))))
-  )
-(sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
+;; If smartparens installed, add more pair for web-mode
+(if (package-installed-p 'smartparens)
+    (progn
+      (require 'smartparens)
+      (defun sp-web-mode-is-code-context (id action context)
+        (and (eq action 'insert)
+             (not (or (get-text-property (point) 'part-side)
+                      (get-text-property (point) 'block-side))))
+        )
+      (sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))))
 
 ;;------------------
 ;; PHP MODE
