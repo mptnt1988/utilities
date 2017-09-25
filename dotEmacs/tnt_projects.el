@@ -74,4 +74,3 @@
 ;;---------------------------
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode)
-(ahs-set-idle-interval 0.2)

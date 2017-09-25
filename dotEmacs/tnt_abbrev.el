@@ -68,5 +68,6 @@
 (declare-abbrevs (global-abbrev-table)
     (
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
+     ("mperle" "-export([])." "C-u 3 C-b")
      )
   )
