@@ -14,6 +14,7 @@
     undo-tree
     smartparens
     auto-highlight-symbol
+    multiple-cursors
     ))
 
 (mapc #'(lambda (package)
@@ -74,3 +75,13 @@
 ;;---------------------------
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode)
+
+;;---------------------------
+;; MULTIPLE-CURSORS
+;;---------------------------
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c m C-c") 'mc/edit-lines)
+(global-set-key (kbd "C-c m m >") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c m m <") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c m u >") 'mc/unmark-next-like-this)
+(global-set-key (kbd "C-c m u <") 'mc/unmark-previous-like-this)
