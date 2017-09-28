@@ -55,7 +55,7 @@
 ;; SMARTPARENS MODE
 ;;------------------
 (require 'smartparens)
-(smartparens-global-strict-mode)
+(smartparens-global-mode)
 (require 'smartparens-config)
 
 (defun my-sp-hook()

@@ -8,7 +8,7 @@
 ;; Note 2:
 ;;   By default, Elpy uses python 2
 ;;   To switch it to python 3, insert this in .emacs:
-;;     (setq elpy-rpc-python-command "python3")
+;;     (tnt_python_setup-python3)
 
 (defvar myPkgs_python
   '(virtualenv
@@ -136,3 +136,10 @@
 
 ;; Complete when typing a dot
 (setq jedi:complete-on-dot t)
+
+;; Function to setup python3
+(defun tnt_python_setup-python3 ()
+  (setq elpy-rpc-python-command "python3")
+  (pop jedi:install-server--command)
+  (push "pip3" jedi:install-server--command)
+  )
