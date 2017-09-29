@@ -104,3 +104,14 @@
 (global-set-key (kbd "C-c C-u") 'tnt_projects_untrace-this-func)
 
 (global-set-key (kbd "C-c C-M-u") 'untrace-all)
+
+;;--------------------------------------
+;; Comment and copy
+(defun tnt_projects_comment-copy ()
+  (interactive)
+  (if (not (use-region-p))
+      (comment-dwim nil)
+    (save-excursion (kill-ring-save (region-beginning) (region-end) 1))
+    (comment-dwim nil)))
+
+(global-set-key "\M-;" 'tnt_projects_comment-copy)
