@@ -85,3 +85,22 @@
 (global-set-key (kbd "C-c m m <") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c m u >") 'mc/unmark-next-like-this)
 (global-set-key (kbd "C-c m u <") 'mc/unmark-previous-like-this)
+
+;;---------------------------
+;; SET KEYS IN USE
+;;---------------------------
+(global-set-key (kbd "C-c C-f") 'find-function-at-point)
+
+(defun tnt_projects_trace-this-func ()
+  (interactive)
+  (trace-function (function-called-at-point))
+  )
+(global-set-key (kbd "C-c C-t") 'tnt_projects_trace-this-func)
+
+(defun tnt_projects_untrace-this-func ()
+  (interactive)
+  (untrace-function (function-called-at-point))
+  )
+(global-set-key (kbd "C-c C-u") 'tnt_projects_untrace-this-func)
+
+(global-set-key (kbd "C-c C-M-u") 'untrace-all)
