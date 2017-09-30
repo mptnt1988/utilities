@@ -101,17 +101,23 @@ If not, open NeoTree with default directory."
 
 (defun tnt_projects_trace-this-func ()
   (interactive)
-  (trace-function (function-called-at-point))
-  )
+  (let ((func (function-called-at-point)))
+    (trace-function func)
+    (message (concat "Tracing " (symbol-name func)))))
 (global-set-key (kbd "C-c C-t") 'tnt_projects_trace-this-func)
 
 (defun tnt_projects_untrace-this-func ()
   (interactive)
-  (untrace-function (function-called-at-point))
-  )
+  (let ((func (function-called-at-point)))
+    (untrace-function func)
+    (message (concat "Untraced " (symbol-name func)))))
 (global-set-key (kbd "C-c C-u") 'tnt_projects_untrace-this-func)
 
-(global-set-key (kbd "C-c C-M-u") 'untrace-all)
+(defun tnt_projects_untrace-all ()
+  (interactive)
+  (untrace-all)
+  (message "Untraced all"))
+(global-set-key (kbd "C-c C-M-u") 'tnt_projects_untrace-all)
 
 ;;--------------------------------------
 ;; Comment and copy
