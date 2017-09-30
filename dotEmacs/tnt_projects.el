@@ -89,6 +89,8 @@
 ;;---------------------------
 ;; SET KEYS IN USE
 ;;---------------------------
+;;--------------------------------------
+;; Trace Emacs Lisp
 (global-set-key (kbd "C-c C-f") 'find-function-at-point)
 
 (defun tnt_projects_trace-this-func ()
@@ -113,5 +115,18 @@
       (comment-dwim nil)
     (save-excursion (kill-ring-save (region-beginning) (region-end) 1))
     (comment-dwim nil)))
-
 (global-set-key "\M-;" 'tnt_projects_comment-copy)
+
+;;--------------------------------------
+;; Select phrase at point
+(defun tnt_projects_select-phrase ()
+  (interactive)
+  (let* ((bounds (bounds-of-thing-at-point 'symbol))
+         (region-beg (car bounds))
+         (region-end (cdr bounds)))
+    (goto-char region-beg)
+    (set-mark-command nil)
+    (goto-char region-end)
+    )
+  )
+(global-set-key (kbd "C-c C-w") 'tnt_projects_select-phrase)
