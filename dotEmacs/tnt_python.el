@@ -145,4 +145,6 @@
   (pop jedi:install-server--command)
   (push "pip3" jedi:install-server--command)
   (setq python-shell-interpreter "python3")
+  (setq elpy-test-discover-runner-command '("python3" "-m" "unittest"))
+  (message "Python mode is using Python 3.")
   )
