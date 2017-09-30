@@ -130,6 +130,8 @@
 ;;------
 ;; Misc.
 ;;------
+;; Set python-indent-guess-indent-offset to nil
+(setq python-indent-guess-indent-offset nil)
 
 ;; Small hack to never show in-function call automatically
 (setq jedi:get-in-function-call-delay 10000000)
