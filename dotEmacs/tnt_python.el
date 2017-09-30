@@ -144,4 +144,5 @@
   (setq elpy-rpc-python-command "python3")
   (pop jedi:install-server--command)
   (push "pip3" jedi:install-server--command)
+  (setq python-shell-interpreter "python3")
   )
