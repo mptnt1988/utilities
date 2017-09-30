@@ -93,8 +93,12 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c m u <") 'mc/unmark-previous-like-this)
 
 ;;---------------------------
-;; SET KEYS IN USE
+;; TRACE & DEBUG
 ;;---------------------------
+;;--------------------------------------
+;; Debug on error
+(setq debug-on-error t)
+
 ;;--------------------------------------
 ;; Trace Emacs Lisp
 (global-set-key (kbd "C-c C-f") 'find-function-at-point)
@@ -119,6 +123,9 @@ If not, open NeoTree with default directory."
   (message "Untraced all"))
 (global-set-key (kbd "C-c C-M-u") 'tnt_projects_untrace-all)
 
+;;---------------------------
+;; OTHER SETTINGS
+;;---------------------------
 ;;--------------------------------------
 ;; Comment and copy
 (defun tnt_projects_comment-copy ()
