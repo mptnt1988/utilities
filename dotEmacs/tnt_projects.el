@@ -32,18 +32,24 @@
 ;; NEOTREE
 ;;------------------
 (require 'neotree)
-(defun neotree-projectile ()
-    "Open NeoTree using the git root."
+(setq projectile-require-project-root nil)
+(defun tnt_projects_neotree-projectile ()
+    "Open NeoTree using the git root if any.
+If not, open NeoTree with default directory."
     (interactive)
     (let ((project-dir (projectile-project-root))
+          (buff-name (buffer-name))
           (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
+      (neotree-show)
+      (if (neo-global--window-exists-p)
+          (progn
+            (neotree-dir project-dir)
+            (if (string= "." (substring buff-name 0 1))
+                (neo-buffer--set-show-hidden-file-p t)
+              )
+            (neotree-find file-name)))))
+(global-set-key (kbd "C-c n s") 'tnt_projects_neotree-projectile)
+(global-set-key (kbd "C-c n h") 'neotree-hide)
 
 ;;------------------
 ;; UNDO-TREE
