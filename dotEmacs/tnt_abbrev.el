@@ -59,14 +59,20 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("mpube" "#!/usr/bin/env")
+    ;; erlang
     ("mperlm" "-module()." add-erl-module-name)
     ("mperlc" "-compile(export_all)." move-to-new-line)
+    ;; scripts
+    ("mpube" "#!/usr/bin/env")
     )
   )
 
 (declare-abbrevs (global-abbrev-table)
     (
+     ;; emacs lisp
+     ("mpeli" "(interactive)" "TAB RET")
+     ("mpelm" "(message )" "TAB C-b")
+     ;; erlang
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
      ("mperle" "-export([])." "C-u 3 C-b")
      )
