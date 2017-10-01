@@ -25,6 +25,7 @@
 [alias]
     a = add
     st = status
+    stu = status -u
     co = checkout
     br = branch
     cm = commit
