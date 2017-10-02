@@ -42,6 +42,9 @@
     rba = rebase --abort
     f = fetch
     ru = remote update
+    ps = push
+    pl = pull
+    pr = pull --rebase
     m = merge
     ms = merge --squash
     tree  = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=short
