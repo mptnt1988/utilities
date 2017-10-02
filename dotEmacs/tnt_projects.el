@@ -149,3 +149,11 @@ If not, open NeoTree with default directory."
     )
   )
 (global-set-key (kbd "C-c C-w") 'tnt_projects_select-phrase)
+
+;;--------------------------------------
+;; Kill chars of white space class
+(defun tnt_projects_kill-whitespace ()
+  (interactive)
+  (kill-region (point) (progn (skip-chars-forward " \t\r\n") (point)))
+  )
+(global-set-key (kbd "C-M-z") 'tnt_projects_kill-whitespace)
