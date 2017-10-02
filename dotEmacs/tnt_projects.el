@@ -103,6 +103,13 @@ If not, open NeoTree with default directory."
 ;; Trace Emacs Lisp
 (global-set-key (kbd "C-c C-f") 'find-function-at-point)
 
+(defun tnt_projects_find-function ()
+  (interactive)
+  (let ((symb (function-called-at-point)))
+    (when symb
+      (find-function symb))))
+(global-set-key (kbd "C-c f") 'tnt_projects_find-function)
+
 (defun tnt_projects_trace-this-func ()
   (interactive)
   (let ((func (function-called-at-point)))
