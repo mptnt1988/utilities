@@ -8,7 +8,7 @@
 (global-set-key "\C-r" 'query-replace)
 (global-set-key [f5] 'my-next-long-line)
 (global-set-key (kbd "C-x M-b") 'ibuffer)
-(global-set-key (kbd "C-M-y") 'x-clipboard-yank)
+
 ;; define arrow-keys for no-window-emacs
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
