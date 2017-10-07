@@ -1,8 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PATH TO LOAD EMACS CHUNK FILES     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'load-path "~/programs/utilities/dotEmacs/")
+(setq dotEmacs-path "~/programs/utilities/dotEmacs/")
+(add-to-list 'load-path dotEmacs-path)
 (load "tnt_package.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,7 +43,6 @@
 ;;--------------------------------------
 ;; [xclip]
 ;; Used to copy from emacs no window to X11 clipboard
-(add-to-list 'load-path "~/programs/utilities/dotEmacs/add-ins/xclip_emacs/")
 (load "tnt_xclip.el")
 
 ;;--------------------------------------
