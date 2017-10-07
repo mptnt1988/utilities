@@ -1,0 +1,60 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PATH TO LOAD EMACS CHUNK FILES     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/programs/utilities/dotEmacs/")
+(load "tnt_package.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PYTHON MODE                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_python.el")
+(tnt_python_setup-python3)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; OCTAVE MODE                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_octave.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ERLANG MODE                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_erlang.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; WEB MODE                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_web-mode.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PROJECT MANAGEMENT                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "tnt_projects.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; COMMON SETTINGS                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;--------------------------------------
+;; [xclip]
+;; Used to copy from emacs no window to X11 clipboard
+(add-to-list 'load-path "~/programs/utilities/dotEmacs/add-ins/xclip_emacs/")
+(load "tnt_xclip.el")
+
+;;--------------------------------------
+;; Abbrev Mode
+(load "tnt_abbrev.el")
+
+;;--------------------------------------
+;; Color theme tuantran
+(load "tnt_color-theme.el")
+
+;;--------------------------------------
+;; Trailing whitespace
+;; Delete all trailing whitespace before saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
