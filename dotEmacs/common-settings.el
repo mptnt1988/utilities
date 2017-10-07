@@ -9,6 +9,8 @@
 (global-set-key [f5] 'my-next-long-line)
 (global-set-key (kbd "C-x M-b") 'ibuffer)
 
+(local-set-key (kbd "TAB") 'tab-space-indent)
+
 ;; define arrow-keys for no-window-emacs
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
@@ -19,62 +21,6 @@
 ;; Unicode
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-
-;;--------------------------------------
-;; Disable backup
-(setq backup-inhibited t)
-
-;;--------------------------------------
-;; Disable auto save
-(setq auto-save-default nil)
-
-;;--------------------------------------
-;; Use spaces instead of tab
-(setq-default indent-tabs-mode nil)
-
-;;--------------------------------------
-;; Set tab width to value
-(setq tab-width 4)
-
-;;--------------------------------------
-;; Enable line numbers globally
-(global-linum-mode t)
-
-;;--------------------------------------
-;; Removing the default start-up buffer
-(setq inhibit-startup-message t)
-
-;;--------------------------------------
-;; Removing the default start-up screen
-'(inhibit-startup-screen t)
-
-;;--------------------------------------
-;; Change yes-or-no to y-or-n
-(fset `yes-or-no-p `y-or-n-p)
-
-;;--------------------------------------
-;; Auto-save
-(setq auto-save-default nil)
-
-;;--------------------------------------
-;; Match parentheses
-(show-paren-mode t)
-
-;;--------------------------------------
-;; Show line-number in the mode line
-(line-number-mode 1)
-
-;;--------------------------------------
-;; Show column-number in the mode line
-(column-number-mode 1)
-
-;;--------------------------------------
-;; Enable clipboard
-(setq x-select-enable-clipboard t)
-
-;;--------------------------------------
-;; Split horizontally when comparing files by ediff
-(setq ediff-split-window-function 'split-window-horizontally)
 
 ;;--------------------------------------
 ;; Start in full-screen mode
@@ -149,10 +95,7 @@
 
 ;;--------------------------------------
 ;; Trailing whitespace
-;; Mark the trailing whitespace clearly
-;; If you open a file which has a lot of trailing whitespaces
-;; you can use Meta (alt x) delete-trailing-whitespace
-(setq-default show-trailing-whitespace t)
+;; Delete all trailing whitespace before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;--------------------------------------
@@ -162,11 +105,11 @@
     (interactive)
     (dolist (buf (buffer-list))
       (with-current-buffer buf
-        (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+        (when (and (buffer-file-name)
+                   (file-exists-p (buffer-file-name))
+                   (not (buffer-modified-p)))
           (revert-buffer t t t) )))
     (message "Refreshed open files.") )
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
 
 ;;--------------------------------------
 ;; diff-hl configuration for console mode
@@ -180,10 +123,6 @@
 (add-hook 'erlang-mode-hook '(lambda() (setq indent-tabs-mode nil)))
 
 ;;--------------------------------------
-;; Highlight current line
-(global-hl-line-mode 1)
-
-;;--------------------------------------
 ;; Change default welcome message to "xyz"
 (defun display-startup-echo-area-message ()
   (message "xyz"))
@@ -191,29 +130,7 @@
 (defun display-startup-echo-area-message ())
 
 ;;--------------------------------------
-;; Line by line scrolling
-(setq scroll-step 1)
-
-;;--------------------------------------
-;; Tab key to indent, untab and delete trailing whitespace
-(defun tab-space-indent ()
-  (interactive)
-  (save-excursion
-    (if (use-region-p)
-        (let*
-            ((firstline (line-number-at-pos (region-beginning)))
-             (lastline (line-number-at-pos (region-end)))
-             (firstpoint (lambda () (save-excursion
-                                      (goto-line firstline)
-                                      (line-beginning-position))))
-             (lastpoint (lambda () (save-excursion
-                                     (goto-line lastline)
-                                     (line-end-position)))))
-          (delete-trailing-whitespace (funcall firstpoint) (funcall lastpoint))
-          (untabify (funcall firstpoint) (funcall lastpoint)))
-      (delete-trailing-whitespace (line-beginning-position) (line-end-position))
-      (untabify (line-beginning-position) (line-end-position))))
-  (indent-for-tab-command))
-
-(local-set-key (kbd "TAB") 'tab-space-indent)
-(global-set-key (kbd "TAB") 'tab-space-indent)
+;; Enable default C-x C-u for upcase-region
+;;                C-x C-l for downcase-region
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

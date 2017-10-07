@@ -164,3 +164,95 @@ If not, open NeoTree with default directory."
   (kill-region (point) (progn (skip-chars-forward " \t\r\n") (point)))
   )
 (global-set-key (kbd "C-M-z") 'tnt_projects_kill-whitespace)
+
+;;--------------------------------------
+;; Comment and copy
+(defun mp-cs-comment-copy ()
+  (interactive)
+  (if (not (use-region-p))
+      (comment-dwim nil)
+    (save-excursion (kill-ring-save (region-beginning) (region-end) 1))
+    (comment-dwim nil)))
+(global-set-key "\M-;" 'mp-cs-comment-copy)
+
+;;--------------------------------------
+;; Tab key to indent, untab and delete trailing whitespace
+(defun tab-space-indent ()
+  (interactive)
+  (save-excursion
+    (if (use-region-p)
+        (let*
+            ((firstline (line-number-at-pos (region-beginning)))
+             (lastline (line-number-at-pos (region-end)))
+             (firstpoint (lambda () (save-excursion
+                                      (goto-line firstline)
+                                      (line-beginning-position))))
+             (lastpoint (lambda () (save-excursion
+                                     (goto-line lastline)
+                                     (line-end-position)))))
+          (delete-trailing-whitespace (funcall firstpoint) (funcall lastpoint))
+          (untabify (funcall firstpoint) (funcall lastpoint)))
+      (delete-trailing-whitespace (line-beginning-position) (line-end-position))
+      (untabify (line-beginning-position) (line-end-position))))
+  (indent-for-tab-command))
+(global-set-key (kbd "TAB") 'tab-space-indent)
+
+;;--------------------------------------
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;;--------------------------------------
+;; Enable line numbers globally
+(global-linum-mode t)
+
+;;--------------------------------------
+;; Removing the default start-up buffer
+(setq inhibit-startup-message t)
+
+;;--------------------------------------
+;; Removing the default start-up screen
+'(inhibit-startup-screen t)
+
+;;--------------------------------------
+;; Change yes-or-no to y-or-n
+(fset `yes-or-no-p `y-or-n-p)
+
+;;--------------------------------------
+;; Disable backup
+(setq backup-inhibited t)
+
+;;--------------------------------------
+;; Disable auto-save
+(setq auto-save-default nil)
+
+;;--------------------------------------
+;; Match parentheses
+(show-paren-mode t)
+
+;;--------------------------------------
+;; Show line-number in the mode line
+(line-number-mode 1)
+
+;;--------------------------------------
+;; Show column-number in the mode line
+(column-number-mode 1)
+
+;;--------------------------------------
+;; Split horizontally when comparing files by ediff
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;;--------------------------------------
+;; Line by line scrolling
+(setq scroll-step 1)
+
+;;--------------------------------------
+;; Use spaces instead of tab
+(setq-default indent-tabs-mode nil)
+
+;;--------------------------------------
+;; Set tab width to value
+(setq tab-width 4)
+
+;;--------------------------------------
+;; Show trailing whitespace
+(setq-default show-trailing-whitespace t)
