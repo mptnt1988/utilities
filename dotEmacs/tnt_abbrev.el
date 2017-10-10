@@ -75,5 +75,7 @@
      ;; erlang
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
      ("mperle" "-export([])." "C-u 3 C-b")
+     ;; python
+     ("mppym" "if __name__ == '__main__':" "RET")
      )
   )
