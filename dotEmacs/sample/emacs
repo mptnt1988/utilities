@@ -41,11 +41,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;--------------------------------------
-;; [xclip]
-;; Used to copy from emacs no window to X11 clipboard
-(load "tnt_xclip.el")
-
-;;--------------------------------------
 ;; Abbrev Mode
 (load "tnt_abbrev.el")
 
