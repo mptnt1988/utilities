@@ -1,0 +1,11 @@
+# auto-complete in python shell, might be obsolete
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+# ignore TensorFlow warnings about the compiled lib
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
