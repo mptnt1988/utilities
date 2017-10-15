@@ -3,4 +3,4 @@
 ;;     (add-to-list 'load-path "/path/to/this/file")
 ;;   then
 ;;     (load "tnt_erlRecordLookup.el")
-(load "erlRecordLookup.el")
+(require "erlRecordLookup.el")

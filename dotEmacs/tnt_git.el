@@ -6,13 +6,12 @@
 ;;   then
 ;;     (load "tnt_git.el")
 
-(defvar myPkgs_git
+(require 'tntLib)
+
+(setq myPkgs
   '(magit
     git-timemachine
     diff-hl
     ))
 
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPkgs_git)
+(tntLib_install-myPkgs)

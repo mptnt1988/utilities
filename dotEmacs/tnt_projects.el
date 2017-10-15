@@ -6,7 +6,9 @@
 ;;   then
 ;;     (load "tnt_projects.el")
 
-(defvar myPkgs_projects
+(require 'tntLib)
+
+(setq myPkgs
   '(
     neotree
     projectile
@@ -18,10 +20,7 @@
     xclip
     ))
 
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPkgs_projects)
+(tntLib_install-myPkgs)
 
 ;;------------------
 ;; PROJECTILE

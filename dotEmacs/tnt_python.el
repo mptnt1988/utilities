@@ -10,16 +10,15 @@
 ;;   To switch it to python 3, insert this in .emacs:
 ;;     (tnt_python_setup-python3)
 
-(defvar myPkgs_python
+(require 'tntLib)
+
+(setq myPkgs
   '(virtualenv
     jedi
     elpy
     ))
 
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPkgs_python)
+(tntLib_install-myPkgs)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; ELPY CONFIGURATION

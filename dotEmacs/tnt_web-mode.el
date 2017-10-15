@@ -4,16 +4,15 @@
 ;;   then
 ;;     (load "tnt_web-mode.el")
 
-(defvar myPkgs_web
+(require 'tntLib)
+
+(setq myPkgs
   '(
     web-mode
     php-mode
     ))
 
-(mapc #'(lambda (package)
-          (unless (package-installed-p package)
-            (package-install package)))
-      myPkgs_web)
+(tntLib_install-myPkgs)
 
 ;;------------------
 ;; WEB MODE

@@ -5,14 +5,13 @@
 ;;   then
 ;;     (load "tnt_color-theme.el")
 
-(defvar myPkgs_color_theme
+(require 'tntLib)
+
+(setq myPkgs
   '(color-theme
     ))
 
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPkgs_color_theme)
+(tntLib_install-myPkgs)
 
 (require 'color-theme)
 
