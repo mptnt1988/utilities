@@ -20,9 +20,10 @@
 (defun tntLib_install-myPkgs (&optional postFun)
   (mapc #'(lambda (package)
             (unless (package-installed-p package)
-              (package-install package)))
+              (package-install package)
+              (if postFun (funcall postFun))
+              ))
         myPkgs)
-  (if postFun (funcall postFun))
   )
 
 ;; Add multi filename patterns to auto mode list
