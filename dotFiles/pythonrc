@@ -8,4 +8,5 @@ else:
     readline.parse_and_bind("tab: complete")
 
 # ignore TensorFlow warnings about the compiled lib
+import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
