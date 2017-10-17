@@ -51,6 +51,7 @@ function LastExitStatus() {
     echo "$last_status"
 }
 
+# NOTE: git required
 change_PS1 () {
-    PROMPT_COMMAND='PS1="\n\[\e[37;44m\]{\!} \[\e[m\]\[\e[33;44m\]\u\[\e[m\]\[\e[37;44m\]@\[\e[m\]\[\e[33;44m\]\h\[\e[m\]\[\e[33;44m\] \[\e[m\]\[\e[37;44m\]\A\[\e[m\]\[\e[33;44m\] \[\e[m\]\[\e[30;44m\]\w\[\e[m\]\n$(LastExitStatus) "'
+    PROMPT_COMMAND='PS1="\n\[\e[37;44m\]{\!} \[\e[33;44m\]\u\[\e[37;44m\]@\[\e[33;44m\]\h\[\e[33;44m\] \[\e[37;44m\]\A\[\e[33;44m\] \[\e[30;44m\]\w\[\e[33;44m\]$(__git_ps1)\[\e[m\]\n$(LastExitStatus) "'
 }
