@@ -82,7 +82,7 @@ branch=$(_mp_color 40);\
 gitbr=$(__git_ps1)
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n$background$historyId{\!} $user\u$at@$\h $time\A $dir\w $branch$bold$gitbr$reset\n${exit_status} "'
+PS1="\n$background$historyId{\!} $user\u$at@$host\h $time\A $dir\w $branch$bold$gitbr$reset\n${exit_status} "'
 }
 
 ###=============================================================================
