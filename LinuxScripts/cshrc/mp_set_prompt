@@ -1,0 +1,4 @@
+#!/usr/bin/env tcsh
+
+alias mp_change_prompt "source $mp_scriptPath/mp_change_prompt > /dev/null"
+alias precmd 'mp_change_prompt $?'

@@ -1,3 +1,12 @@
 #!/usr/bin/env tcsh
 
-alias mp_change_prompt "source $scriptPath/mp_change_prompt > /dev/null"
+##------------------------------------------------------------------------------
+## First load functions in this module:
+##     setenv mp_scriptPath <dir_path>
+##     source $mp_scriptPath/c_funcs.sh
+## The call the functions which are aliases
+##------------------------------------------------------------------------------
+
+## Set color prompt
+## Note: Changing alias precmd and var mp_scriptPath will affect this function
+alias mp_set_prompt "source $mp_scriptPath/mp_set_prompt"
