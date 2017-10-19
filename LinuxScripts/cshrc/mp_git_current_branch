@@ -1,0 +1,7 @@
+#!/usr/bin/env tcsh
+
+set gitcmd="git symbolic-ref --short HEAD"
+eval "$gitcmd >& /dev/null"
+if ("$?" == "0") then
+    echo "  %{\033[44;32m%}(`$gitcmd`)"
+endif

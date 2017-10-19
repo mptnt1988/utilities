@@ -1,0 +1,20 @@
+#!/usr/bin/env tcsh
+
+
+set exit_status=$1
+alias _mp_exit_status 'source $scriptPath/mp_exit_status $exit_status'
+
+alias _mp_git_current_branch 'source $scriptPath/mp_git_current_branch'
+
+## color settings
+set hid="%{\033[44;37m%}"    # history number
+set usr="%{\033[44;33m%}"    # username
+set at="%{\033[44;37m%}"     # @
+set host="%{\033[44;33m%}"   # host
+set clock="%{\033[44;37m%}"  # time
+set dir="%{\033[44;29m%}"    # current directory
+set gitbr="%{\033[44;32m%}"  # current git branch
+set reset="%{\033[0;0m%}"    # reset all
+
+set prompt="\n${hid}%B{%h} ${usr}`logname`${at}@${host}%m ${clock}%T $dir%/`_mp_git_current_branch`\n`_mp_exit_status`$reset "
+
