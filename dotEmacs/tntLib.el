@@ -23,12 +23,16 @@
               (package-install package)
               (if postFun (funcall postFun))
               ))
-        myPkgs)
-  )
+        myPkgs))
 
 ;; Add multi filename patterns to auto mode list
 (defun tntLib_add-files-to-mode (mode lst)
   (dolist (file lst)
     (add-to-list 'auto-mode-alist (cons file mode))))
+
+;; Add add-ins directory to load-path
+(add-to-list 'load-path
+             (concat (file-name-as-directory dotEmacs-path)
+                     "add-ins"))
 
 (provide 'tntLib)
