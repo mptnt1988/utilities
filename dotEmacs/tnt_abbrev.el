@@ -72,6 +72,7 @@
      ;; emacs lisp
      ("mpeli" "(interactive)" "TAB RET")
      ("mpelm" "(message )" "TAB C-b")
+     ("mpelt" "(defun  ()\n  (interactive)\n  \n)" "C-u 2 4 C-b")
      ;; erlang
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
      ("mperle" "-export([])." "C-u 3 C-b")
