@@ -29,6 +29,14 @@
 ;;      mp-bookmark-char
 ;;    + Default bookmark color "color-226" can be configured by
 ;;      bl_set-color
+;; - Setting example:
+;;     (global-set-key (kbd "C-c b a") 'bl_add-line)
+;;     (global-set-key (kbd "C-c b r") 'bl_remove-line)
+;;     (global-set-key (kbd "C-c b M-r") 'bl_remove-all)
+;;     (global-set-key (kbd "C-c b n") 'bl_next-bm)
+;;     (global-set-key (kbd "C-c b p") 'bl_previous-bm)
+;;     (setq mp-bookmark-char "✔")
+;;     (bl_set-color "color-46")
 
 ;;====================================================================
 ;; CODE:
