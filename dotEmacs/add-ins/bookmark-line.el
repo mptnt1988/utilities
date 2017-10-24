@@ -74,7 +74,7 @@
                                     (concat "d" mp-bookmark-char)
                                   "d"))
                         line-number)
-                    'face chosen-face)))
+                'face chosen-face)))
 
 (setq linum-format 'bl_check-mark-current-line)
 
@@ -85,8 +85,8 @@
          (existed-p (member current-linum mp-bookmark-list)))
     (unless existed-p
       (let ((new-bm-list (add-to-list 'mp-bookmark-list
-                                       current-linum)))
-            (setq mp-bookmark-list (sort new-bm-list '<))))))
+                                      current-linum)))
+        (setq mp-bookmark-list (sort new-bm-list '<))))))
 
 (defun bl_remove-line ()
   "Remove the current line number from list."
