@@ -103,7 +103,7 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; BOOKMARK-LINE
 ;;---------------------------
-(require 'bookmark-line)
+(require 'mp-bookmark-line)
 (global-set-key (kbd "C-c b a") 'bl_add-line)
 (global-set-key (kbd "C-c b r") 'bl_remove-line)
 (global-set-key (kbd "C-c b M-r") 'bl_remove-all)

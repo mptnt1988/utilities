@@ -35,4 +35,15 @@
              (concat (file-name-as-directory dotEmacs-path)
                      "add-ins"))
 
+;; Change color name to hex number
+;; Example: mp_colorname2hex("mediumspringgreen")
+(defun mp_colorname2hex (name)
+  (concat "#"
+	  (let (res)
+	    (dolist (var (color-values name) res)
+	      (setq res (concat res (mp_to-hex var)))))))
+
+(defun mp_to-hex (num)
+  (format "%04X" num))
+
 (provide 'tntLib)

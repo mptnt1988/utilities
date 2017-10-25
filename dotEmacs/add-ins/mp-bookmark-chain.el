@@ -1,4 +1,4 @@
-;;; --- bookmarkhere.el ---
+;;; --- mp-bookmark-chain.el ---
 ;;; Bookmark current position to jump back later
 
 ;;====================================================================

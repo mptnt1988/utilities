@@ -1,4 +1,4 @@
-;;; --- bookmark-line.el ---
+;;; --- mp-bookmark-line.el ---
 ;;; Line bookmarks for Emacs buffer
 
 ;;====================================================================
@@ -125,4 +125,4 @@
         (message "No previous bookmark.")
       (goto-line (nth (- i 1) mp-bookmark-list)))))
 
-(provide 'bookmark-line)
+(provide 'mp-bookmark-line)

@@ -1,4 +1,4 @@
-;;; --- cmdlist.el ---
+;;; --- mp-cmdlist.el ---
 ;;; Conveniently running Linux async commands in Emacs
 
 ;;====================================================================
