@@ -45,8 +45,7 @@ If not, open NeoTree with default directory."
           (progn
             (neotree-dir project-dir)
             (if (string= "." (substring buff-name 0 1))
-                (neo-buffer--set-show-hidden-file-p t)
-              )
+                (neo-buffer--set-show-hidden-file-p t))
             (neotree-find file-name)))))
 (global-set-key (kbd "C-c n s") 'tnt_projects_neotree-projectile)
 (global-set-key (kbd "C-c n h") 'neotree-hide)
@@ -72,8 +71,7 @@ If not, open NeoTree with default directory."
   (local-set-key (kbd "C-c s b n") 'sp-forward-barf-sexp)
   (local-set-key (kbd "C-c s b p") 'sp-backward-barf-sexp)
   (local-set-key (kbd "C-c s s n") 'sp-forward-slurp-sexp)
-  (local-set-key (kbd "C-c s s p") 'sp-backward-slurp-sexp)
-  )
+  (local-set-key (kbd "C-c s s p") 'sp-backward-slurp-sexp))
 (add-hook 'smartparens-mode-hook 'my-sp-hook)
 
 ;;---------------------------
@@ -111,6 +109,14 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c b p") 'bl_previous-bm)
 ;; (setq mp-bookmark-char "✔")
 ;; (bl_set-color "color-46")
+
+;;---------------------------
+;; WINDOW SIZE
+;;---------------------------
+(global-set-key (kbd "C-c <up>") 'enlarge-window)
+(global-set-key (kbd "C-c <down>") 'shrink-window)
+(global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-c <left>") 'shrink-window-horizontally)
 
 ;;---------------------------
 ;; TRACE & DEBUG
@@ -172,17 +178,14 @@ If not, open NeoTree with default directory."
          (region-end (cdr bounds)))
     (goto-char region-beg)
     (set-mark-command nil)
-    (goto-char region-end)
-    )
-  )
+    (goto-char region-end)))
 (global-set-key (kbd "C-c C-w") 'tnt_projects_select-phrase)
 
 ;;--------------------------------------
 ;; Kill chars of white space class
 (defun tnt_projects_kill-whitespace ()
   (interactive)
-  (kill-region (point) (progn (skip-chars-forward " \t\r\n") (point)))
-  )
+  (kill-region (point) (progn (skip-chars-forward " \t\r\n") (point))))
 (global-set-key (kbd "C-M-z") 'tnt_projects_kill-whitespace)
 
 ;;--------------------------------------
