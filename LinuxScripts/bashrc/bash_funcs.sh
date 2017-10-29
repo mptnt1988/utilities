@@ -105,3 +105,12 @@ mp_show_colors () {
     done
     _mp_print_color {232..255}
 }
+
+###=============================================================================
+### GNOME logout
+### Usage:
+###   mp_logout
+
+mp_logout () {
+    gnome-session-quit --no-prompt
+}
