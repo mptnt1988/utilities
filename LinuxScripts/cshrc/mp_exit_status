@@ -2,7 +2,7 @@
 
 set x=$1
 if ("$x" == "0") then
-    echo '%{\033[1;32m%}O'  # success
+    echo '%{\033[0;32m%}O'  # success
 else
-    echo '%{\033[1;31m%}X'  # failure
+    echo '%{\033[0;31m%}X'  # failure
 endif

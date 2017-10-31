@@ -17,5 +17,4 @@ set dir="%{\033[44;36m%}"    # current directory
 set gitbr="%{\033[44;32m%}"  # current git branch
 set reset="%{\033[0;0m%}"    # reset all
 
-set prompt="\n${hid}%B{%h} ${usr}`logname`${at}@${host}%m ${clock}%T $dir%/`_mp_git_current_branch`\n`_mp_exit_status`$reset "
-
+set prompt="\n${hid}{%h} ${usr}`logname`${at}@${host}%m ${clock}%T $dir%/%B`_mp_git_current_branch`%b$reset \n`_mp_exit_status`$reset "
