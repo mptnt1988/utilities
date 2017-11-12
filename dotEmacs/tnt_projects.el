@@ -18,6 +18,7 @@
     auto-highlight-symbol
     multiple-cursors
     xclip
+    command-log-mode
     ))
 
 (tntLib_install-myPkgs)
@@ -117,6 +118,22 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c <down>") 'shrink-window)
 (global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-c <left>") 'shrink-window-horizontally)
+
+;;---------------------------
+;; COMMAND LOG MODE
+;;---------------------------
+(require 'command-log-mode)
+
+;;--------------------------------------
+;; GUIDE:
+;;   Toggle the mode:
+;;     M-x command-log-mode
+;;   Open *command-log* buffer:
+;;     M-x clm/open-command-log-buffer
+;;   Modify log directory:
+;;     (defvar clm/logging-dir "~/log/")
+;;   Save to log directory:
+;;     M-x clm/save-command-log
 
 ;;---------------------------
 ;; TRACE & DEBUG
