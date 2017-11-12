@@ -35,7 +35,6 @@ mp_add_PATH () {
 ### Change command prompt
 ### Usage:
 ###   mp_change_PS1
-# helper functions for Bash - easier coloring than using escape sequences
 
 # foreground color
 _mp_color () {
@@ -71,6 +70,7 @@ _mp_last_exit_status () {
 # NOTE: git required
 mp_change_PS1 () {
     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
+pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
 background=$(_mp_bg_color 18);\
 historyId=$(_mp_color 255);\
 user=$(_mp_color 3);\
@@ -82,7 +82,7 @@ branch=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n$background$historyId{\!} $user\u$at@$host\h $time\A $dir${PWD} $branch$bold$gitbr$reset\n${exit_status} "'
+PS1="\n${pyvenv}$background$historyId{\!} $user\u$at@$host\h $time\A $dir${PWD} $branch$bold$gitbr$reset\n${exit_status} "'
 }
 
 ###=============================================================================
@@ -113,4 +113,19 @@ mp_show_colors () {
 
 mp_logout () {
     gnome-session-quit --no-prompt
+}
+
+###=============================================================================
+### Python virtualenv prompt adding
+### Usage:
+###   mp_pyvenv
+
+mp_venv_info () {
+    [[ -n "$VIRTUAL_ENV" ]] && echo "<venv: $VIRTUAL_ENV>\n"
+}
+
+mp_pyvenv () {
+    # Disable default virtualenv prompt change
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+    export MP_PYVENV_ALLOWED=1
 }

@@ -120,4 +120,6 @@ mp_add_PATH /home/tuantran/.local/bin/ \
 mp_change_PS1
 export PYTHONSTARTUP=/home/tuantran/.pythonrc
 export TF_CPP_MIN_LOG_LEVEL=2
+alias emacsnw='emacs -nw'
+mp_pyenv
 ### Tran #########
