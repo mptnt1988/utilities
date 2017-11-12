@@ -35,8 +35,7 @@
 
 ;; Add PIP packages' bin path to exec-path
 (add-to-list 'exec-path
-             (substitute-in-file-name "/home/$USER/.local/bin")
-             )
+             (substitute-in-file-name "/home/$USER/.local/bin"))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; JEDI CONFIGURATION
@@ -57,9 +56,9 @@
 ;; Jedi configuration
 ;;-------------------
 
-;; Tuan: Uncomment this to allow virtualenv
-;; (defvar jedi-config:with-virtualenv nil
-;;   "Set to non-nil to point to a particular virtualenv.")
+;; Allow virtualenv
+(defvar jedi-config:with-virtualenv nil
+  "Set to non-nil to point to a particular virtualenv.")
 
 ;; Variables to help find the project root
 (defvar jedi-config:vcs-root-sentinel ".git")
@@ -90,11 +89,10 @@
     (when project-root
       (add-args jedi:server-args "--sys-path" project-root))
 
-    ;; Tuan: Uncomment this to allow virtualenv
-    ;; (when project-root
-    ;;   (add-args jedi:server-args "--virtual-env" jedi-config:with-virtualenv)
-    ;;   )
-    ))
+    ;; Allow virtualenv
+    (when project-root
+      (add-args jedi:server-args "--virtual-env" jedi-config:with-virtualenv)
+      )))
 
 ;; Tuan: Uncomment this for OS X
 ;; (defvar jedi-config:use-system-python t)
@@ -145,5 +143,15 @@
   (push "pip3" jedi:install-server--command)
   (setq python-shell-interpreter "python3")
   (setq elpy-test-discover-runner-command '("python3" "-m" "unittest"))
-  (message "Python mode is using Python 3.")
-  )
+  (message "Python mode is using Python 3."))
+
+;; Wrapper to pyvenv-activate a virtualenv
+(defun tnt_pyvenv_activate (directory)
+  (interactive "DActivate venv: ")
+  (pyvenv-activate directory)
+  (message "mptnt1988: Installing packages to the virtualenv directory...")
+  (shell-command
+   (concat
+    "cd " directory " && "
+    "pip3 install jedi epc flake8 importmagic autopep8 yapf virtualenv"))
+  (message "mptnt1988: Installation done!!!"))
