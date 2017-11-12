@@ -112,14 +112,32 @@ if ! shopt -oq posix; then
   fi
 fi
 
+###------------###
 ### Tuan added ###
+###------------###
+
+# Load functions
 source /home/tuantran/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
+
+# Add paths to PATH
 mp_add_PATH /home/tuantran/.local/bin/ \
             /home/tuantran/programs/_softs_/ \
             /home/tuantran/.config/composer/vendor/bin/
+
+# Change bash prompt
 mp_change_PS1
+
+# Python shell startup script
 export PYTHONSTARTUP=/home/tuantran/.pythonrc
+# Add Python venv custom prompt
+mp_pyvenv
+
+# Ignore TensorFlow warnings
 export TF_CPP_MIN_LOG_LEVEL=2
+
+# Emacs
 alias emacsnw='emacs -nw'
-mp_pyenv
-### Tran #########
+
+###------###
+### Tran ###
+###------###
