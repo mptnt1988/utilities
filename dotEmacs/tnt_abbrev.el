@@ -19,18 +19,25 @@
 (defun dont-insert-expansion-char () t)
 (put 'dont-insert-expansion-char 'no-self-insert t)
 
-(defun add-erl-module-name ()
+(defun tnt_abbrev_add-erl-module-name ()
   (backward-char 2)
   (insert (file-name-sans-extension (buffer-name)))
-  (move-to-new-line)
+  (tnt_abbrev_move-to-new-line)
   t)
-(put 'add-erl-module-name 'no-self-insert t)
+(put 'tnt_abbrev_add-erl-module-name 'no-self-insert t)
 
-(defun move-to-new-line ()
+(defun tnt_abbrev_get-erl-record-name ()
+  (backward-char 6)
+  (insert (read-string "Record name: "))
+  (forward-char 3)
+  t)
+(put 'tnt_abbrev_get-erl-record-name 'no-self-insert t)
+
+(defun tnt_abbrev_move-to-new-line ()
   (end-of-line)
   (newline-and-indent)
   )
-(put 'move-to-new-line 'no-self-insert t)
+(put 'tnt_abbrev_move-to-new-line 'no-self-insert t)
 
 (require 'cl)
 (defvar my-abbrev-tables nil)
@@ -60,8 +67,9 @@
 (define-abbrev-table 'global-abbrev-table
   '(
     ;; erlang
-    ("mperlm" "-module()." add-erl-module-name)
-    ("mperlc" "-compile(export_all)." move-to-new-line)
+    ("mperlm" "-module()." tnt_abbrev_add-erl-module-name)
+    ("mperlc" "-compile(export_all)." tnt_abbrev_move-to-new-line)
+    ("mperlr" "-record(, {})." tnt_abbrev_get-erl-record-name)
     ;; scripts
     ("mpube" "#!/usr/bin/env")
     )
@@ -76,7 +84,9 @@
      ;; erlang
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
      ("mperle" "-export([])." "C-u 3 C-b")
+     ("mperld" "-define()." "C-u 2 C-b")
      ;; python
+     ("mppy3" "#!/usr/bin/env python3" "RET")
      ("mppym" "if __name__ == '__main__':" "RET")
      )
   )
