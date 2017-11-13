@@ -6,6 +6,7 @@ set scriptPath=$mp_scriptPath
 
 alias _mp_exit_status 'source $scriptPath/mp_exit_status $exit_status'
 alias _mp_git_current_branch 'source $scriptPath/mp_git_current_branch'
+alias _mp_py_current_venv 'source $scriptPath/mp_py_current_venv'
 
 ## color settings
 set hid="%{\033[44;37m%}"    # history number
@@ -18,4 +19,4 @@ set gitbr="%{\033[44;32m%}"  # current git branch
 set reset="%{\033[0;0m%}"    # reset all
 
 
-set prompt="\n${hid}%B{%h} ${usr}`whoami`${at}@${host}%m ${clock}%T $dir%/`_mp_git_current_branch`$reset \n`_mp_exit_status`$reset "
+set prompt="\n`_mp_py_current_venv`${hid}%B{%h} ${usr}`whoami`${at}@${host}%m ${clock}%T $dir%/`_mp_git_current_branch`%b$reset \n`_mp_exit_status`$reset "
