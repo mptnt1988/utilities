@@ -19,6 +19,7 @@
     multiple-cursors
     xclip
     command-log-mode
+    iy-go-to-char
     ))
 
 (tntLib_install-myPkgs)
@@ -125,7 +126,7 @@ If not, open NeoTree with default directory."
 (require 'command-log-mode)
 
 ;;--------------------------------------
-;; GUIDE:
+;; Guide:
 ;;   Toggle the mode:
 ;;     M-x command-log-mode
 ;;   Open *command-log* buffer:
@@ -136,6 +137,15 @@ If not, open NeoTree with default directory."
 ;;     M-x clm/save-command-log
 
 ;;---------------------------
+;; IY-GO-TO-CHAR
+;;---------------------------
+(require 'iy-go-to-char)
+(global-set-key (kbd "M-N") 'iy-go-to-char)
+(global-set-key (kbd "M-P") 'iy-go-to-char-backward)
+(global-set-key (kbd "M-n") 'iy-go-to-or-up-to-continue)
+(global-set-key (kbd "M-p") 'iy-go-to-or-up-to-continue-backward)
+
+;;---------------------------
 ;; TRACE & DEBUG
 ;;---------------------------
 ;;--------------------------------------
@@ -144,34 +154,34 @@ If not, open NeoTree with default directory."
 
 ;;--------------------------------------
 ;; Trace Emacs Lisp
-(global-set-key (kbd "C-c C-f") 'find-function-at-point)
+(global-set-key (kbd "C-c t o") 'find-function-at-point)
 
 (defun tnt_projects_find-function ()
   (interactive)
   (let ((symb (function-called-at-point)))
     (when symb
       (find-function symb))))
-(global-set-key (kbd "C-c f") 'tnt_projects_find-function)
+(global-set-key (kbd "C-c t f") 'tnt_projects_find-function)
 
 (defun tnt_projects_trace-this-func ()
   (interactive)
   (let ((func (function-called-at-point)))
     (trace-function func)
     (message (concat "Tracing " (symbol-name func)))))
-(global-set-key (kbd "C-c C-t") 'tnt_projects_trace-this-func)
+(global-set-key (kbd "C-c t t") 'tnt_projects_trace-this-func)
 
 (defun tnt_projects_untrace-this-func ()
   (interactive)
   (let ((func (function-called-at-point)))
     (untrace-function func)
     (message (concat "Untraced " (symbol-name func)))))
-(global-set-key (kbd "C-c C-u") 'tnt_projects_untrace-this-func)
+(global-set-key (kbd "C-c t u") 'tnt_projects_untrace-this-func)
 
 (defun tnt_projects_untrace-all ()
   (interactive)
   (untrace-all)
   (message "Untraced all"))
-(global-set-key (kbd "C-c C-M-u") 'tnt_projects_untrace-all)
+(global-set-key (kbd "C-c t M-u") 'tnt_projects_untrace-all)
 
 ;;---------------------------
 ;; OTHER SETTINGS
