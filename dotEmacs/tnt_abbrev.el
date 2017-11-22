@@ -85,6 +85,9 @@
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
      ("mperle" "-export([])." "C-u 3 C-b")
      ("mperld" "-define()." "C-u 2 C-b")
+     ("mperli" "-include(\"\")." "C-u 3 C-b")
+     ("mperlil" "-include_lib(\"\")." "C-u 3 C-b")
+     ("mperlb" "-behaviour()." "C-u 2 C-b")
      ;; python
      ("mppy3" "#!/usr/bin/env python3" "RET")
      ("mppym" "if __name__ == '__main__':" "RET")

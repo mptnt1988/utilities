@@ -150,7 +150,7 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;;--------------------------------------
 ;; Debug on error
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;;--------------------------------------
 ;; Trace Emacs Lisp
