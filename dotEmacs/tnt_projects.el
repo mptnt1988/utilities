@@ -20,6 +20,7 @@
     xclip
     command-log-mode
     iy-go-to-char
+    drag-stuff
     ))
 
 (tntLib_install-myPkgs)
@@ -144,6 +145,13 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "M-P") 'iy-go-to-char-backward)
 (global-set-key (kbd "M-n") 'iy-go-to-or-up-to-continue)
 (global-set-key (kbd "M-p") 'iy-go-to-or-up-to-continue-backward)
+
+;;---------------------------
+;; DRAG-STUFF
+;;---------------------------
+(require 'drag-stuff)
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
 
 ;;---------------------------
 ;; TRACE & DEBUG
