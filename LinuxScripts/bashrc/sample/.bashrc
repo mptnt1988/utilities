@@ -116,27 +116,36 @@ fi
 ### Tuan added ###
 ###------------###
 
-# Load functions
+# LOAD FUNCTIONS
 source /home/tuantran/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
 
-# Add paths to PATH
-mp_add_PATH /home/tuantran/.local/bin/ \
-            /home/tuantran/programs/_softs_/ \
-            /home/tuantran/.config/composer/vendor/bin/
+# SOFTWARE DIR
+mp_add_PATH /home/tuantran/programs/_softs_/
 
-# Change bash prompt
+# PHP LARAVEL
+mp_add_PATH /home/tuantran/.config/composer/vendor/bin/
+
+# CHANGE BASH PROMPT
 mp_change_PS1
 
-# Python shell startup script
+# PYTHON
+# python dir
+mp_add_PATH /home/tuantran/.local/bin/
 export PYTHONSTARTUP=/home/tuantran/.pythonrc
 # Add Python venv custom prompt
 mp_pyvenv
-
 # Ignore TensorFlow warnings
 export TF_CPP_MIN_LOG_LEVEL=2
 
-# Emacs
+# EMACS
 alias emacsnw='emacs -nw'
+
+# NODEJS - NPM
+# global installation - change dir
+mkdir ~/.npm-global 2>/dev/null
+npm config set prefix '~/.npm-global'
+mp_add_PATH ~/.npm-global/bin/
+export NODE_PATH=~/.npm-global/lib/node_modules/
 
 ###------###
 ### Tran ###
