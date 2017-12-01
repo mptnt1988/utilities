@@ -39,6 +39,16 @@
   )
 (put 'tnt_abbrev_move-to-new-line 'no-self-insert t)
 
+(defun tnt_abbrev_get-module-name ()
+  (let ((module (read-string "Module name: ")))
+    (backward-char 16)
+    (insert module)
+    (save-excursion
+      (forward-char 12)
+      (insert module)))
+  t)
+(put 'tnt_abbrev_get-module-name 'no-self-insert t)
+
 (require 'cl)
 (defvar my-abbrev-tables nil)
 (defun my-abbrev-hook ()
@@ -70,16 +80,18 @@
     ("mperlm" "-module()." tnt_abbrev_add-erl-module-name)
     ("mperlc" "-compile(export_all)." tnt_abbrev_move-to-new-line)
     ("mperlr" "-record(, {})." tnt_abbrev_get-erl-record-name)
+    ;; javascript
+    ("mpjsr" "var  = require('');\n" tnt_abbrev_get-module-name)
     ;; scripts
     ("mpube" "#!/usr/bin/env")
-    )
-  )
+    ))
 
 (declare-abbrevs (global-abbrev-table)
     (
      ;; emacs lisp
      ("mpeli" "(interactive)" "TAB RET")
      ("mpelm" "(message )" "TAB C-b")
+     ("mpeld" "(defun  ()\n  \n)" "C-u 8 C-b")
      ("mpelt" "(defun  ()\n  (interactive)\n  \n)" "C-u 2 4 C-b")
      ;; erlang
      ("mperlio" "io:format(\": ~p~n\", [[{?MODULE, ?LINE}]])," "C-u 3 1 C-b")
@@ -88,8 +100,9 @@
      ("mperli" "-include(\"\")." "C-u 3 C-b")
      ("mperlil" "-include_lib(\"\")." "C-u 3 C-b")
      ("mperlb" "-behaviour()." "C-u 2 C-b")
+     ;; javascript
+     ("mpjscl" "console.log();" "C-b C-b")
      ;; python
      ("mppy3" "#!/usr/bin/env python3" "RET")
      ("mppym" "if __name__ == '__main__':" "RET")
-     )
-  )
+     ))
