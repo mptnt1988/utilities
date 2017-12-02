@@ -152,6 +152,10 @@ If not, open NeoTree with default directory."
 (require 'drag-stuff)
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
+(global-set-key (kbd "ESC <up>") 'drag-stuff-up)
+(global-set-key (kbd "ESC <down>") 'drag-stuff-down)
+(global-set-key (kbd "ESC <left>") 'drag-stuff-left)
+(global-set-key (kbd "ESC <right>") 'drag-stuff-right)
 
 ;;---------------------------
 ;; TRACE & DEBUG
