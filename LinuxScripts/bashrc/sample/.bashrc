@@ -117,21 +117,21 @@ fi
 ###------------###
 
 # LOAD FUNCTIONS
-source /home/tuantran/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
+source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
 
 # SOFTWARE DIR
-mp_add_PATH /home/tuantran/programs/_softs_/
+mp_add_PATH ~/programs/_softs_/
 
 # PHP LARAVEL
-mp_add_PATH /home/tuantran/.config/composer/vendor/bin/
+mp_add_PATH ~/.config/composer/vendor/bin/
 
 # CHANGE BASH PROMPT
 mp_change_PS1
 
 # PYTHON
 # python dir
-mp_add_PATH /home/tuantran/.local/bin/
-export PYTHONSTARTUP=/home/tuantran/.pythonrc
+mp_add_PATH ~/.local/bin/
+export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
 mp_pyvenv
 # Ignore TensorFlow warnings
