@@ -1,12 +1,12 @@
 [user]
-	name = Tuan Tran
-	email = mptnt1988@gmail.com
+    name = Tuan Tran
+    email = mptnt1988@gmail.com
 [core]
-	editor = emacs -nw
-	autocrlf = false
-	whitespace = fix,indent-with-non-tab,trailing-space,cr-at-eol
+    editor = emacs -nw
+    autocrlf = false
+    whitespace = fix,indent-with-non-tab,trailing-space,cr-at-eol
 [color]
-	ui = auto
+    ui = auto
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -54,3 +54,5 @@
     showUntrackedFiles = no
 [merge]
     tool = meld
+[push]
+    default = simple
