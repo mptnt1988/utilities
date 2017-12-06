@@ -21,6 +21,7 @@
     command-log-mode
     iy-go-to-char
     drag-stuff
+    flycheck
     ))
 
 (tntLib_install-myPkgs)
@@ -156,6 +157,12 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "ESC <down>") 'drag-stuff-down)
 (global-set-key (kbd "ESC <left>") 'drag-stuff-left)
 (global-set-key (kbd "ESC <right>") 'drag-stuff-right)
+
+;;---------------------------
+;; FLYCHECK
+;;---------------------------
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;---------------------------
 ;; TRACE & DEBUG
