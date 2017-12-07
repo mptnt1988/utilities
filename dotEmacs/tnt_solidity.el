@@ -11,7 +11,16 @@
 (setq myPkgs '(solidity-mode
                ))
 
-(tntLib_install-myPkgs)
+(defun tnt_solidity_remove-elc ()
+  (message "Auto remove solidity-mode.elc by mptnt1988")
+  (let*
+      ((tntcd "cd ~/.emacs.d/elpa/solidity-mode-*")
+       (tntrm "rm -f solidity-mode.elc"))
+    (call-process-shell-command
+     (concat tntcd " && "
+             tntrm))))
+
+(tntLib_install-myPkgs 'tnt_solidity_remove-elc)
 
 (require 'solidity-mode)
 
