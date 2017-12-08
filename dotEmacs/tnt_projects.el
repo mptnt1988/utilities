@@ -163,6 +163,7 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-emacs-lisp-load-path 'inherit)
 
 ;;---------------------------
 ;; TRACE & DEBUG

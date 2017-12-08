@@ -155,3 +155,6 @@
     "cd " directory " && "
     "pip3 install jedi epc flake8 importmagic autopep8 yapf virtualenv"))
   (message "mptnt1988: Installation done!!!"))
+
+(provide 'tnt_python)
+;;; tnt_python.el ends here

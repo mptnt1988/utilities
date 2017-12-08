@@ -1,12 +1,15 @@
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_web-mode.el")
+;;; tnt_web-mode --- Module for web-mode
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_web-mode)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
+(defvar tntLib-myPkgs
   '(
     web-mode
     php-mode
@@ -17,6 +20,7 @@
 ;;------------------
 ;; WEB MODE
 ;;------------------
+
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
@@ -56,5 +60,12 @@
 ;;------------------
 ;; PHP MODE
 ;;------------------
+
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
+;; *mptnt1988*:
+;;   sp-local-pair is defined by cl-defun
+;;   Currently, not able to remove cl related warning
+(provide 'tnt_web-mode)
+;;; tnt_web-mode.el ends here
