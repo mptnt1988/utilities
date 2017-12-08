@@ -19,16 +19,24 @@ mp_string_join () {
 }
 
 ###=============================================================================
-### Add multiple dirs to PATH
+### Add multiple dirs to PATH, respecting the specified order
 ### Usage:
 ###   mp_add_PATH <arg1> <arg2> ...
 ### Ex:
 ###   $ mp_add_PATH /a /b /c
-###       ...:/a:/b:/c
+###       /a:/b:/c:...
 
 mp_add_PATH () {
-    local result=$(mp_string_join : "$@")
-    PATH=$PATH:$result
+    [[ -z "$@" ]] && return 1
+    local uniqPaths=$(echo $@ | xargs -n1 | uniq | xargs)
+    local paths
+    for path in $uniqPaths
+    do
+        [[ ":$PATH:" != *":$path:"* ]] && paths+=($path)
+    done
+    [[ -z "${paths[@]}" ]] && return 0
+    local result=$(mp_string_join : "${paths[@]}")
+    PATH=$result:$PATH
 }
 
 ###=============================================================================
