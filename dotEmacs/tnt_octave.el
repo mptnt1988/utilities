@@ -1,10 +1,11 @@
-;; Introduction:
-;;   This module is used for setup and configure Emacs Octave Support
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_octave.el")
+;;; tnt_octave --- Setup and configure Emacs Octave support
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_octave)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
@@ -15,3 +16,6 @@
             (auto-fill-mode 1)
             (if (eq window-system 'x)
                 (font-lock-mode 1))))
+
+(provide 'tnt_octave)
+;;; tnt_octave.el ends here

@@ -1,18 +1,23 @@
-;; Introduction:
-;;   This module is used for set up screencast recorder
-;; Note:
-;;   + 'recordmydesktop' and 'ffmpeg' must be installed in Linux env
-;;   + Emacs run in window mode
-;;   + Add path to this file to 'load-path
-;;       (add-to-list 'load-path "/path/to/this/file")
-;;     then
-;;       (load "tnt_camcorder.el")
+;;; tnt_camcorder --- Desktop recording
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  This module is used for set up screencast recorder
+;;  + 'recordmydesktop' and 'ffmpeg' must be installed in Linux env
+;;  + Emacs run in window mode
+;;  Usage:
+;;    (require 'tnt_camcorder)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
-      '(
-        camcorder
-        ))
+(setq tntLib-myPkgs
+  '(
+    camcorder
+    ))
 
 (tntLib_install-myPkgs)
+
+(provide 'tnt_camcorder)
+;;; tnt_camcorder.el ends here

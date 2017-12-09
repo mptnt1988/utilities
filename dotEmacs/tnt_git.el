@@ -1,17 +1,22 @@
-;; Introduction:
-;;   This module is used for setup and configure Git usage in Emacs
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_git.el")
+;;; tnt_git --- Setup and configure Git usage in Emacs
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_git)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
-  '(magit
+(setq tntLib-myPkgs
+  '(
+    magit
     git-timemachine
     diff-hl
     ))
 
 (tntLib_install-myPkgs)
+
+(provide 'tnt_git)
+;;; tnt_git.el ends here

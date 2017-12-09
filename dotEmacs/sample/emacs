@@ -1,39 +1,54 @@
+;;; .emacs --- Emacs setting
+;;;---------------------------------------------------------
+;;; Commentary:
+
+;;;---------------------------------------------------------
+;;; Code:
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PATH TO LOAD EMACS CHUNK FILES     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq dotEmacs-path "~/programs/utilities/dotEmacs/")
-(add-to-list 'load-path dotEmacs-path)
+
+(let ((default-directory  "~/programs/utilities/dotEmacs/"))
+  (add-to-list 'load-path default-directory)
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PROJECT MANAGEMENT                 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "tnt_projects.el")
+(require 'tnt_projects)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SOLIDITY MODE                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'tnt_solidity)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PYTHON MODE                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "tnt_python.el")
+(require 'tnt_python)
 (tnt_python_setup-python3)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; OCTAVE MODE                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "tnt_octave.el")
+(require 'tnt_octave)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ERLANG MODE                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "tnt_erlang.el")
+(require 'tnt_erlang)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; WEB MODE                           ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "tnt_web-mode.el")
+(require 'tnt_web-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; COMMON SETTINGS                    ;;
@@ -41,13 +56,16 @@
 
 ;;--------------------------------------
 ;; Abbrev Mode
-(load "tnt_abbrev.el")
+(require 'tnt_abbrev)
 
 ;;--------------------------------------
 ;; Color theme tuantran
-(load "tnt_color-theme.el")
+(require 'tnt_color-theme)
 
 ;;--------------------------------------
 ;; Trailing whitespace
 ;; Delete all trailing whitespace before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(provide '.emacs)
+;;; .emacs ends here

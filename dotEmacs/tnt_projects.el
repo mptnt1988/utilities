@@ -1,14 +1,17 @@
-;; Introduction:
-;;   This module is used for setup and configure packages to manage projects
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_projects.el")
+;;; tnt_projects --- Manage packages for common projects
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  This module is used for setup and configure packages to
+;;  manage projects
+;;  Usage:
+;;    (require 'tnt_projects)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
+(setq tntLib-myPkgs
   '(
     neotree
     projectile
@@ -29,14 +32,18 @@
 ;;------------------
 ;; PROJECTILE
 ;;------------------
+
 (require 'projectile)
-(projectile-global-mode)
+
+(projectile-mode)
 
 ;;------------------
 ;; NEOTREE
 ;;------------------
+
 (require 'neotree)
-(setq projectile-require-project-root nil)
+
+(defvar projectile-require-project-root nil)
 (defun tnt_projects_neotree-projectile ()
     "Open NeoTree using the git root if any.
 If not, open NeoTree with default directory."
@@ -57,14 +64,19 @@ If not, open NeoTree with default directory."
 ;;------------------
 ;; UNDO-TREE
 ;;------------------
+
 (require 'undo-tree)
+
 (global-undo-tree-mode)
 
 ;;------------------
 ;; SMARTPARENS MODE
 ;;------------------
+
 (require 'smartparens)
+
 (smartparens-global-mode)
+
 (require 'smartparens-config)
 
 (defun my-sp-hook()
@@ -81,13 +93,17 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; AUTO HIGHLIGHT SYMBOL MODE
 ;;---------------------------
+
 (require 'auto-highlight-symbol)
+
 (global-auto-highlight-symbol-mode)
 
 ;;---------------------------
 ;; MULTIPLE-CURSORS
 ;;---------------------------
+
 (require 'multiple-cursors)
+
 (global-set-key (kbd "C-c m C-c") 'mc/edit-lines)
 (global-set-key (kbd "C-c m m >") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c m m <") 'mc/mark-previous-like-this)
@@ -97,15 +113,19 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; XCLIP
 ;;---------------------------
+
 ;; Note: Linux xclip required
 (require 'xclip)
+
 (xclip-mode 1)
 (global-set-key (kbd "C-M-y") 'x-clipboard-yank)
 
 ;;---------------------------
 ;; BOOKMARK-LINE
 ;;---------------------------
+
 (require 'mp-bookmark-line)
+
 (global-set-key (kbd "C-c b a") 'bl_add-line)
 (global-set-key (kbd "C-c b r") 'bl_remove-line)
 (global-set-key (kbd "C-c b M-r") 'bl_remove-all)
@@ -117,6 +137,7 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; WINDOW SIZE
 ;;---------------------------
+
 (global-set-key (kbd "C-c <up>") 'enlarge-window)
 (global-set-key (kbd "C-c <down>") 'shrink-window)
 (global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
@@ -125,6 +146,7 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; COMMAND LOG MODE
 ;;---------------------------
+
 (require 'command-log-mode)
 
 ;;--------------------------------------
@@ -141,7 +163,9 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; IY-GO-TO-CHAR
 ;;---------------------------
+
 (require 'iy-go-to-char)
+
 (global-set-key (kbd "M-N") 'iy-go-to-char)
 (global-set-key (kbd "M-P") 'iy-go-to-char-backward)
 (global-set-key (kbd "M-n") 'iy-go-to-or-up-to-continue)
@@ -150,9 +174,12 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; DRAG-STUFF
 ;;---------------------------
+
 (require 'drag-stuff)
+
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
+
 (global-set-key (kbd "ESC <up>") 'drag-stuff-up)
 (global-set-key (kbd "ESC <down>") 'drag-stuff-down)
 (global-set-key (kbd "ESC <left>") 'drag-stuff-left)
@@ -161,21 +188,29 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; FLYCHECK
 ;;---------------------------
+
 (require 'flycheck)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-emacs-lisp-load-path 'inherit)
 
 ;;---------------------------
 ;; TRACE & DEBUG
 ;;---------------------------
+
 ;;--------------------------------------
 ;; Debug on error
 ;; (setq debug-on-error t)
 
 ;;--------------------------------------
 ;; Trace Emacs Lisp
+
+(require 'trace)
+
 (global-set-key (kbd "C-c t o") 'find-function-at-point)
 
 (defun tnt_projects_find-function ()
+  "Jump to definition of Emacs Lisp function at point."
   (interactive)
   (let ((symb (function-called-at-point)))
     (when symb
@@ -183,6 +218,7 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c t f") 'tnt_projects_find-function)
 
 (defun tnt_projects_trace-this-func ()
+  "Trace Emacs Lisp function at point."
   (interactive)
   (let ((func (function-called-at-point)))
     (trace-function func)
@@ -190,6 +226,7 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c t t") 'tnt_projects_trace-this-func)
 
 (defun tnt_projects_untrace-this-func ()
+  "Untrace Emacs Lisp function at point."
   (interactive)
   (let ((func (function-called-at-point)))
     (untrace-function func)
@@ -197,6 +234,7 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c t u") 'tnt_projects_untrace-this-func)
 
 (defun tnt_projects_untrace-all ()
+  "Untrace all Emacs Lisp functions."
   (interactive)
   (untrace-all)
   (message "Untraced all"))
@@ -205,9 +243,11 @@ If not, open NeoTree with default directory."
 ;;---------------------------
 ;; OTHER SETTINGS
 ;;---------------------------
+
 ;;--------------------------------------
 ;; Comment and copy
 (defun tnt_projects_comment-copy ()
+  "Comment and also copy selection."
   (interactive)
   (if (not (use-region-p))
       (comment-dwim nil)
@@ -218,6 +258,7 @@ If not, open NeoTree with default directory."
 ;;--------------------------------------
 ;; Select phrase at point
 (defun tnt_projects_select-phrase ()
+  "Select phrase at point."
   (interactive)
   (let* ((bounds (bounds-of-thing-at-point 'symbol))
          (region-beg (car bounds))
@@ -230,23 +271,15 @@ If not, open NeoTree with default directory."
 ;;--------------------------------------
 ;; Kill chars of white space class
 (defun tnt_projects_kill-whitespace ()
+  "Kill all whitespaces."
   (interactive)
   (kill-region (point) (progn (skip-chars-forward " \t\r\n") (point))))
 (global-set-key (kbd "C-M-z") 'tnt_projects_kill-whitespace)
 
 ;;--------------------------------------
-;; Comment and copy
-(defun mp-cs-comment-copy ()
-  (interactive)
-  (if (not (use-region-p))
-      (comment-dwim nil)
-    (save-excursion (kill-ring-save (region-beginning) (region-end) 1))
-    (comment-dwim nil)))
-(global-set-key "\M-;" 'mp-cs-comment-copy)
-
-;;--------------------------------------
 ;; Tab key to indent, untab and delete trailing whitespace
 (defun tab-space-indent ()
+  "Press tab key to indent, untab and delete trailing whitespace."
   (interactive)
   (save-excursion
     (if (use-region-p)
@@ -254,15 +287,20 @@ If not, open NeoTree with default directory."
             ((firstline (line-number-at-pos (region-beginning)))
              (lastline (line-number-at-pos (region-end)))
              (firstpoint (lambda () (save-excursion
-                                      (goto-line firstline)
+                                      (forward-line (- firstline
+                                                       (line-number-at-pos)))
                                       (line-beginning-position))))
              (lastpoint (lambda () (save-excursion
-                                     (goto-line lastline)
+                                     (forward-line (- lastline
+                                                      (line-number-at-pos)))
                                      (line-end-position)))))
-          (delete-trailing-whitespace (funcall firstpoint) (funcall lastpoint))
+          (delete-trailing-whitespace (funcall firstpoint)
+                                      (funcall lastpoint))
           (untabify (funcall firstpoint) (funcall lastpoint)))
-      (delete-trailing-whitespace (line-beginning-position) (line-end-position))
-      (untabify (line-beginning-position) (line-end-position))))
+      (delete-trailing-whitespace (line-beginning-position)
+                                  (line-end-position))
+      (untabify (line-beginning-position)
+                (line-end-position))))
   (indent-for-tab-command))
 (global-set-key (kbd "TAB") 'tab-space-indent)
 
@@ -308,7 +346,7 @@ If not, open NeoTree with default directory."
 
 ;;--------------------------------------
 ;; Split horizontally when comparing files by ediff
-(setq ediff-split-window-function 'split-window-horizontally)
+(defvar ediff-split-window-function 'split-window-horizontally)
 
 ;;--------------------------------------
 ;; Line by line scrolling
@@ -325,3 +363,9 @@ If not, open NeoTree with default directory."
 ;;--------------------------------------
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
+
+;; *mptnt1988*:
+;;   Currently, neotree warning cannot be disabled
+;;   due to its own fault
+(provide 'tnt_projects)
+;;; tnt_projects.el ends here

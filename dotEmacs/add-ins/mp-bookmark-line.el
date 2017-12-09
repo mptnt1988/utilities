@@ -1,5 +1,6 @@
-;;; --- mp-bookmark-line.el ---
-;;; Line bookmarks for Emacs buffer
+;;; mp-bookmark-line --- Line bookmarks for Emacs buffer
+;;;---------------------------------------------------------
+;;; Commentary:
 
 ;;====================================================================
 ;; Author: Tuan N. Tran <mptnt1988@gmail.com>
@@ -38,8 +39,8 @@
 ;;     (setq mp-bookmark-char "✔")
 ;;     (bl_set-color "color-46")
 
-;;====================================================================
-;; CODE:
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'linum)
 
@@ -54,6 +55,7 @@
   :group 'linum)
 
 (defun bl_set-color (color)
+  "Set bookmark icon COLOR."
   (set-face-attribute 'linum-bookmark-face nil
                       :foreground color))
 
@@ -65,7 +67,7 @@
                                                 (point-max)))))))
 
 (defun bl_check-mark-current-line (line-number)
-  "Highlight the current line number using `linum-bookmark-face'."
+  "Highlight the current LINE-NUMBER using `linum-bookmark-face'."
   (let* ((the-line-p (member line-number mp-bookmark-list))
          (chosen-face (if the-line-p 'linum-bookmark-face
                         'linum)))
@@ -110,7 +112,7 @@
       (setq i (1+ i)))
     (if (= i len)
         (message "No next bookmark.")
-      (goto-line (nth i mp-bookmark-list)))))
+      (forward-line (- (nth i mp-bookmark-list) (line-number-at-pos))))))
 
 (defun bl_previous-bm ()
   "Jump to previous bookmarked line."
@@ -123,6 +125,7 @@
       (setq i (1+ i)))
     (if (= i 0)
         (message "No previous bookmark.")
-      (goto-line (nth (- i 1) mp-bookmark-list)))))
+      (forward-line (- (nth (- i 1) mp-bookmark-list) (line-number-at-pos))))))
 
 (provide 'mp-bookmark-line)
+;;; mp-bookmark-line.el ends here

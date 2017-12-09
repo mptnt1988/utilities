@@ -1,17 +1,20 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Copy from this file to ~/.emacs    ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; common-settings --- Common settings
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Copy from this file to ~/.emacs
+
+;;;---------------------------------------------------------
+;;; Code:
 
 ;;--------------------------------------
 ;; Set keybindings
-(global-set-key "\C-l" 'goto-line)
-(global-set-key "\C-r" 'query-replace)
+;;   Global
 (global-set-key [f5] 'my-next-long-line)
 (global-set-key (kbd "C-x M-b") 'ibuffer)
-
+;;   Local
 (local-set-key (kbd "TAB") 'tab-space-indent)
 
-;; define arrow-keys for no-window-emacs
+;;   Define arrow-keys for no-window-emacs
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
 (define-key input-decode-map "\M-[1;5C" [C-right])
@@ -25,6 +28,7 @@
 ;;--------------------------------------
 ;; Start in full-screen mode
 (defun toggle-fullscreen ()
+  "Start Emacs window in full-screen mode."
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
@@ -36,21 +40,21 @@
 
 ;;--------------------------------------
 ;; Load certain packages
-(load "tnt_package.el")
-(defvar myPackages
-  '(better-defaults
-    material-theme))
+(require 'tntLib)
+(setq tntLib-myPkgs
+  '(
+    better-defaults
+    material-theme
+    ))
 
-(mapc #'(lambda (package)
-    (unless (package-installed-p package)
-      (package-install package)))
-      myPackages)
+(tntLib_install-myPkgs)
 
 (load-theme 'material t) ; load material theme
 
 ;;--------------------------------------
 ;; Set frame size according to resolution
 (defun set-frame-size-according-to-resolution ()
+  "Set frame size according to resolution."
   (interactive)
   (if window-system
   (progn
@@ -70,9 +74,9 @@
 ;;--------------------------------------
 ;; Find 80 char long lines
 (defun my-next-long-line (arg)
-  (set-fill-column 80)
   "Move to the ARGth next long line greater than `fill-column'."
   (interactive "p")
+  (set-fill-column 80)
   (or arg (setq arg 1))
   (let ((opoint (point))
         (line-length 0))
@@ -113,9 +117,9 @@
 
 ;;--------------------------------------
 ;; diff-hl configuration for console mode
-(diff-hl-mode)
-(diff-hl-flydiff-mode)
-(diff-hl-margin-mode)
+;; (diff-hl-mode)
+;; (diff-hl-flydiff-mode)
+;; (diff-hl-margin-mode)
 
 ;;--------------------------------------
 ;; Example on adding a hook
@@ -125,12 +129,16 @@
 ;;--------------------------------------
 ;; Change default welcome message to "xyz"
 (defun display-startup-echo-area-message ()
+  "Display welcome message."
   (message "xyz"))
-;; or remove it
-(defun display-startup-echo-area-message ())
+;; or remove it by:
+;; (defun display-startup-echo-area-message ())
 
 ;;--------------------------------------
 ;; Enable default C-x C-u for upcase-region
 ;;                C-x C-l for downcase-region
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(provide 'common-settings)
+;;; common-settings.el ends here

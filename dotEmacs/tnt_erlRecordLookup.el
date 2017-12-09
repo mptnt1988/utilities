@@ -1,6 +1,13 @@
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_erlRecordLookup.el")
-(require "erlRecordLookup.el")
+;;; tnt_erlRecordLookup --- Erlang record lookup support
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_erlRecordLookup)
+
+;;;---------------------------------------------------------
+;;; Code:
+
+(require 'erlRecordLookup)
+
+(provide 'tnt_erlRecordLookup)
+;;; tnt_erlRecordLookup.el ends here

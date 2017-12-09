@@ -1,12 +1,15 @@
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_web-mode.el")
+;;; tnt_web-mode --- Module for web-mode
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_web-mode)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
+(setq tntLib-myPkgs
   '(
     web-mode
     php-mode
@@ -17,6 +20,7 @@
 ;;------------------
 ;; WEB MODE
 ;;------------------
+
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
@@ -31,15 +35,13 @@
 
 (setq web-mode-engines-alist
       '(("php"    . "\\.phtml\\'")
-        ("blade"  . "\\.blade\\."))
-      )
+        ("blade"  . "\\.blade\\.")))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-  (local-set-key (kbd "RET") 'newline-and-indent)
-  )
+  (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 ;; If smartparens installed, add more pair for web-mode
@@ -49,12 +51,18 @@
       (defun sp-web-mode-is-code-context (id action context)
         (and (eq action 'insert)
              (not (or (get-text-property (point) 'part-side)
-                      (get-text-property (point) 'block-side))))
-        )
+                      (get-text-property (point) 'block-side)))))
       (sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))))
 
 ;;------------------
 ;; PHP MODE
 ;;------------------
+
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
+;; *mptnt1988*:
+;;   sp-local-pair is defined by cl-defun
+;;   Currently, not able to remove cl related warning
+(provide 'tnt_web-mode)
+;;; tnt_web-mode.el ends here

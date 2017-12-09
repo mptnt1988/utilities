@@ -1,6 +1,13 @@
-;; Note:
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_emacsmp.el")
-(load "cmdlist.el")
+;;; tnt_emacsmp --- Manage mptnt1988 common minor utilities
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Usage:
+;;    (require 'tnt_emacsmp)
+
+;;;---------------------------------------------------------
+;;; Code:
+
+(require 'mp-cmdlist)
+
+(provide 'tnt_emacsmp)
+;;; tnt_emacsmp.el ends here

@@ -1,5 +1,6 @@
-;;; --- mp-cmdlist.el ---
-;;; Conveniently running Linux async commands in Emacs
+;;; mp-cmdlist --- Conveniently running Linux async commands in Emacs
+;;;---------------------------------------------------------
+;;; Commentary:
 
 ;;====================================================================
 ;; Author: Tuan N. Tran <mptnt1988@gmail.com>
@@ -30,63 +31,60 @@
 ;;    + Remove a command by cmdlist-remove, with specified position
 ;;    + Clear whole cmdlist by cmdlist-clear
 
-;;====================================================================
-;; CODE:
+;;;---------------------------------------------------------
+;;; Code:
+
+(defvar mp-cmdlist-list '() "List contains all commands to execute.")
 
 (defun cmdlist-add(text)
   "Add a new command to cmdlist"
   (interactive "sCommand to be added: ")
-  (setq tnt_cmdlist
-	(append (if (boundp 'tnt_cmdlist)
-		    tnt_cmdlist
+  (setq mp-cmdlist-list
+	(append (if (boundp 'mp-cmdlist-list)
+		    mp-cmdlist-list
 		  ())
-		(list text))
-	)
+		(list text)))
   (message (concat "Command saved at position "
-		   (number-to-string (length tnt_cmdlist))))
-  )
+		   (number-to-string (length mp-cmdlist-list)))))
 
 (defun cmdlist-show()
   "Show current cmdlist"
   (interactive)
-  (if (boundp 'tnt_cmdlist)
+  (if (boundp 'mp-cmdlist-list)
       (with-output-to-temp-buffer "*cmdlist/mptnt1988*"
 	(princ (let ((i 0) (result ""))
-		 (dolist (var tnt_cmdlist result)
+		 (dolist (var mp-cmdlist-list result)
 		   (setq i (+ i 1))
 		   (setq result
 			 (concat result
 				 (number-to-string i)
 				 "\t" var "\n"))))))
-    (message "There is no command in cmdlist"))
-  )
+    (message "There is no command in cmdlist")))
 
 (defun cmdlist-run(pos)
   "Run the command at position pos in cmdlist"
   (interactive "nRun command at position: ")
-  (async-shell-command (nth (- pos 1) tnt_cmdlist))
-  )
+  (async-shell-command (nth (- pos 1) mp-cmdlist-list)))
 
 (defun cmdlist-remove(pos)
   "Remove the command at position pos in cmdlist"
   (interactive "nRemove command at position: ")
-  (setq tnt_cmdlist (append
-		     (butlast tnt_cmdlist
-			      (- (length tnt_cmdlist) pos -1))
-		     (nthcdr pos tnt_cmdlist)))
-  (cmdlist-show)
-  )
-
+  (setq mp-cmdlist-list (append
+		     (butlast mp-cmdlist-list
+			      (- (length mp-cmdlist-list) pos -1))
+		     (nthcdr pos mp-cmdlist-list)))
+  (cmdlist-show))
 
 (defun cmdlist-replace(pos cmd)
   "Replace the command at position pos in cmdlist by new command cmd"
   (interactive "nReplace command at position: \ns...with command: ")
-  (setcar (nthcdr (- pos 1) tnt_cmdlist) cmd)
-  (cmdlist-show)
-  )
+  (setcar (nthcdr (- pos 1) mp-cmdlist-list) cmd)
+  (cmdlist-show))
 
 (defun cmdlist-clear()
   "Clear whole cmdlist"
   (interactive)
-  (makunbound 'tnt_cmdlist)
-  )
+  (makunbound 'mp-cmdlist-list))
+
+(provide 'mp-cmdlist)
+;;; mp-cmdlist.el ends here

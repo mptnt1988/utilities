@@ -1,14 +1,18 @@
-;; Note:
-;;   Install color-theme and color-theme-solarized from Packages List
-;;   Add path to this file to 'load-path
-;;     (add-to-list 'load-path "/path/to/this/file")
-;;   then
-;;     (load "tnt_color-theme.el")
+;;; tnt_color-theme --- mptnt1988 theme
+;;;---------------------------------------------------------
+;;; Commentary:
+;;  Install color-theme and color-theme-solarized from Packages List
+;;  Usage:
+;;    (require 'tnt_color-theme)
+
+;;;---------------------------------------------------------
+;;; Code:
 
 (require 'tntLib)
 
-(setq myPkgs
-  '(color-theme
+(setq tntLib-myPkgs
+  '(
+    color-theme
     ))
 
 (tntLib_install-myPkgs)
@@ -194,3 +198,6 @@
 
 (if (fboundp 'color-theme-tuantran)
     (color-theme-tuantran))
+
+(provide 'tnt_color-theme)
+;;; tnt_color-theme.el ends here
