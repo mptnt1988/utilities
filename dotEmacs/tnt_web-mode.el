@@ -13,9 +13,17 @@
   '(
     web-mode
     php-mode
+    typescript-mode
     ))
 
-(tntLib_install-myPkgs)
+(defun tnt_web-mode_installation-hook ()
+  "Auto install tslint and typescript."
+  (message "mptnt1988: Auto install tnt_web-mode...
+typescript tslint & typescript")
+  (let
+      ((tntinstall "npm install -g tslint typescript"))
+    (call-process-shell-command tntinstall)))
+(tntLib_install-myPkgs 'tnt_web-mode_installation-hook)
 
 ;;------------------
 ;; WEB MODE
@@ -60,6 +68,12 @@
 
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
+;;------------------
+;; TYPESCRIPT MODE
+;;------------------
+
+(require 'typescript-mode)
 
 ;; *mptnt1988*:
 ;;   sp-local-pair is defined by cl-defun
