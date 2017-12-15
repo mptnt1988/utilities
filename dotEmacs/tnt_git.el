@@ -18,5 +18,18 @@
 
 (tntLib_install-myPkgs)
 
+;; SUPPORT FUNCTIONS
+(require 'magit)
+(require 'git-timemachine)
+
+(defun tnt_git_checkout-gt-revision ()
+  "Checkout current git-timemachine revision."
+  (interactive)
+  (if git-timemachine-revision
+      (magit-file-checkout (car git-timemachine-revision)
+                           git-timemachine-file)
+    (error "Error (mptnt1988): Not in git-timemachine minor mode")))
+(global-set-key (kbd "C-c g o") 'tnt_git_checkout-gt-revision)
+
 (provide 'tnt_git)
 ;;; tnt_git.el ends here
