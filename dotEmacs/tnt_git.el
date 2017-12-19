@@ -18,9 +18,22 @@
 
 (tntLib_install-myPkgs)
 
-;; SUPPORT FUNCTIONS
+;;----------------------------
+;; MAGIT
+;;----------------------------
+
 (require 'magit)
+(global-set-key (kbd "C-c g s") 'magit-status)
+
+;;----------------------------
+;; GIT-TIMEMACHINE
+;;----------------------------
+
 (require 'git-timemachine)
+
+;;----------------------------
+;; SUPPORT FUNCTIONS
+;;----------------------------
 
 (defun tnt_git_checkout-gt-revision ()
   "Checkout current git-timemachine revision."
