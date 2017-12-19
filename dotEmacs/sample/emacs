@@ -48,7 +48,7 @@
 ;; WEB MODE                           ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'tnt_web-mode)
+(require 'tnt_web)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; COMMON SETTINGS                    ;;

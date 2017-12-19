@@ -1,20 +1,19 @@
-;;; tnt_web-mode --- Module for web-mode
+;;; tnt_web --- Module for web mode
 ;;;---------------------------------------------------------
 ;;; Commentary:
 ;;  Usage:
-;;    (require 'tnt_web-mode)
+;;    (require 'tnt_web)
 
 ;;;---------------------------------------------------------
 ;;; Code:
 
 (require 'tntLib)
 
+;; install web-mode with my custom hook
 (setq tntLib-myPkgs
-  '(
-    web-mode
-    php-mode
-    typescript-mode
-    ))
+      '(
+        web-mode
+        ))
 
 (defun tnt_web-mode_installation-hook ()
   "Auto install tslint and typescript."
@@ -23,7 +22,20 @@ typescript tslint & typescript")
   (let
       ((tntinstall "npm install -g tslint typescript"))
     (call-process-shell-command tntinstall)))
+
 (tntLib_install-myPkgs 'tnt_web-mode_installation-hook)
+
+;; install other packages
+(setq tntLib-myPkgs
+      '(
+        php-mode
+        typescript-mode
+        restclient
+        request
+        web
+        ))
+
+(tntLib_install-myPkgs)
 
 ;;------------------
 ;; WEB MODE
@@ -75,8 +87,27 @@ typescript tslint & typescript")
 
 (require 'typescript-mode)
 
+;;------------------
+;; REQUEST
+;;------------------
+
+(require 'request)
+
+;;------------------
+;; RESTCLIENT
+;;------------------
+
+(require 'restclient)
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
+
+;;------------------
+;; WEB
+;;------------------
+
+(require 'web)
+
 ;; *mptnt1988*:
 ;;   sp-local-pair is defined by cl-defun
 ;;   Currently, not able to remove cl related warning
-(provide 'tnt_web-mode)
-;;; tnt_web-mode.el ends here
+(provide 'tnt_web)
+;;; tnt_web.el ends here
