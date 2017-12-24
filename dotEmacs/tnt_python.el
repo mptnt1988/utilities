@@ -166,5 +166,14 @@
     "pip3 install jedi epc flake8 importmagic autopep8 yapf virtualenv"))
   (message "mptnt1988: Installation done!!!"))
 
+;; Reset keys in python-mode
+;; *mptnt1988*:
+;;   There is an unknown problem with python-shell-send-buffer
+(defun tnt_python_execute-buffer ()
+  "Execute current buffer."
+  (interactive)
+  (python-shell-send-file buffer-file-name))
+(define-key elpy-mode-map (kbd "C-c C-c") 'tnt_python_execute-buffer)
+
 (provide 'tnt_python)
 ;;; tnt_python.el ends here
