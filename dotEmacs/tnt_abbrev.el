@@ -183,7 +183,11 @@
      ("mpjscl" "console.log();" "C-b C-b")
      ;; python
      ("mppy3" "#!/usr/bin/env python3" "RET")
-     ("mppym" "if __name__ == '__main__':" "RET")))
+     ("mppyi" "def __init__(self):" "C-u 2 C-b")
+     ("mppym" "if __name__ == '__main__':" "RET")
+     ("mppynp" "import numpy as np" "RET")
+     ("mppypd" "import pandas as pd" "RET")
+     ("mppyplt" "import matplotlib.pyplot as plt" "RET")))
 
 (provide 'tnt_abbrev)
 ;;; tnt_abbrev.el ends here
