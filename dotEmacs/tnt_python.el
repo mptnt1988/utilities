@@ -172,7 +172,9 @@
 (defun tnt_python_execute-buffer ()
   "Execute current buffer."
   (interactive)
-  (python-shell-send-file buffer-file-name))
+  (python-shell-send-file buffer-file-name)
+  (switch-to-buffer-other-window
+   (process-buffer (python-shell-get-or-create-process))))
 (define-key elpy-mode-map (kbd "C-c C-c") 'tnt_python_execute-buffer)
 
 (provide 'tnt_python)
