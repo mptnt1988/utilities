@@ -133,9 +133,13 @@ mp_change_PS1
 mp_add_PATH ~/.local/bin/
 export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
-mp_pyvenv
+mp_venv_prompt
 # Ignore TensorFlow warnings
 export TF_CPP_MIN_LOG_LEVEL=2
+# Start jupyter notebook
+alias mp_ipynb='jupyter notebook --ip=* --no-browser'
+# Support listing & setting virtualenv
+mp_pyvenv -d /home/tuantran/workspace/_python_test_/_venv_
 
 # EMACS
 alias emacsnw='emacs -nw'

@@ -126,14 +126,60 @@ mp_logout () {
 ###=============================================================================
 ### Python virtualenv prompt adding
 ### Usage:
-###   mp_pyvenv
+###   - To enable custom prompt
+###       mp_pyvenv_prompt
+###   - To show the prompt
+###       mp_venv_info
 
 mp_venv_info () {
     [[ -n "$VIRTUAL_ENV" ]] && echo "<venv: $VIRTUAL_ENV>\n"
 }
 
-mp_pyvenv () {
+mp_venv_prompt () {
     # Disable default virtualenv prompt change
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     export MP_PYVENV_ALLOWED=1
+}
+
+###=============================================================================
+### Python venv listing, creating and activating
+### Usage:
+###   Get help by:
+###     mp_pyvenv [-h]
+
+_mp_pyvenv_complete () {
+    # fill local variable with a list of completions
+    local COMPLETES=$(ls $MP_PYVENV_DIR)
+    # we put the completions into $COMPREPLY using compgen
+    COMPREPLY=( $(compgen -W "$COMPLETES" -- ${COMP_WORDS[COMP_CWORD]}) )
+    return 0
+}
+
+mp_pyvenv () {
+    case $1 in
+        "" | "-h")
+            echo -e "*** Use option:" \
+            "\n\t\"-d <dir>\"\t\tsetting directory of venvs" \
+            "\n\t\"-l\"\t\t\tlisting venvs" \
+            "\n\t\"-c <venv name>\"\tcreating a venv" \
+            "\n\t\"<venv name>\"\t\tactivating a venv"
+            return 1;;
+        "-l" )
+            [[ -n "$MP_PYVENV_DIR" ]] && ls "$MP_PYVENV_DIR";;
+        "-d" )
+            export MP_PYVENV_DIR=$2
+            complete -F _mp_pyvenv_complete mp_pyvenv;;
+        "-c" )
+            [[ -z $MP_PYVENV_DIR ]] && echo "*** MP_PYVENV_DIR unset to any directory" && return 1
+            python3 -m venv "$MP_PYVENV_DIR/$2";;
+        * )
+            [[ -z $MP_PYVENV_DIR ]] && echo "*** MP_PYVENV_DIR unset to any directory" && return 1
+            local activateScript="$MP_PYVENV_DIR/$1/bin/activate"
+            if [ -f $activateScript ]
+            then source $activateScript
+            else
+                echo "*** NOT a venv: $MP_PYVENV_DIR/$1"
+                return 1
+            fi
+    esac
 }
