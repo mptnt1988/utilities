@@ -187,7 +187,8 @@
      ("mppym" "if __name__ == '__main__':" "RET")
      ("mppynp" "import numpy as np" "RET")
      ("mppypd" "import pandas as pd" "RET")
-     ("mppyplt" "import matplotlib.pyplot as plt" "RET")))
+     ("mppyplt" "import matplotlib.pyplot as plt" "RET")
+     ("mppysns" "import seaborn as sns" "RET")))
 
 (provide 'tnt_abbrev)
 ;;; tnt_abbrev.el ends here
