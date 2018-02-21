@@ -165,7 +165,14 @@ mp_pyvenv () {
             "\n\t\"<venv name>\"\t\tactivating a venv"
             return 1;;
         "-l" )
-            [[ -n "$MP_PYVENV_DIR" ]] && ls "$MP_PYVENV_DIR";;
+            if [ -z $MP_PYVENV_DIR ]
+            then
+                echo "*** MP_PYVENV_DIR unset to any directory"
+                mp_pyvenv -h
+            else
+                echo -e "- VENV DIR:\n$MP_PYVENV_DIR\n"
+                echo -e "- VENVs:\n$(ls $MP_PYVENV_DIR)"
+            fi;;
         "-d" )
             export MP_PYVENV_DIR=$2
             complete -F _mp_pyvenv_complete mp_pyvenv;;
