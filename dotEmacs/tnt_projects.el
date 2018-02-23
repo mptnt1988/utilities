@@ -195,6 +195,19 @@ If not, open NeoTree with default directory."
 (setq flycheck-emacs-lisp-load-path 'inherit)
 
 ;;---------------------------
+;; DIRED MODE
+;;---------------------------
+
+(require dired)
+
+(defun tnt_projects_dired-copy-file-here (file)
+  "Copy FILE from other directory to here."
+  (interactive "fCopy file: ")
+  (copy-file file default-directory))
+(eval-after-load "dired"
+  '(define-key dired-mode-map "Y" 'tnt_projects_dired-copy-file-here))
+
+;;---------------------------
 ;; TRACE & DEBUG
 ;;---------------------------
 
