@@ -163,7 +163,7 @@
   (shell-command
    (concat
     "cd " directory " && "
-    "pip3 install jedi epc flake8 importmagic autopep8 yapf virtualenv"))
+    "pip3 install wheel jedi epc flake8 importmagic autopep8 yapf virtualenv"))
   (message "mptnt1988: Installation done!!!"))
 
 ;; Reset keys in python-mode
