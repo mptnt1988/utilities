@@ -198,8 +198,6 @@ If not, open NeoTree with default directory."
 ;; DIRED MODE
 ;;---------------------------
 
-(require dired)
-
 (defun tnt_projects_dired-copy-file-here (file)
   "Copy FILE from other directory to here."
   (interactive "fCopy file: ")
