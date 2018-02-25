@@ -90,7 +90,7 @@ branch=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n${pyvenv}$background$historyId{\!} $user\u$at@$host\h $time\A $dir${PWD} $branch$bold$gitbr$reset\n${exit_status} "'
+PS1="\n${pyvenv}$background$user\u$at@$host\h $time\A($exit_status$background)  $dir${PWD} $branch$bold$gitbr$reset\n"'
 }
 
 ###=============================================================================
