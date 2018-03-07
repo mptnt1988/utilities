@@ -60,7 +60,8 @@
 ;;-------------------
 
 ;; Allow virtualenv
-(defvar jedi-config:with-virtualenv nil
+;; (defvar jedi-config:with-virtualenv nil
+(defvar jedi-config:with-virtualenv "~/.emacs.d/.python-environments/default"
   "Set to non-nil to point to a particular virtualenv.")
 
 ;; Variables to help find the project root
