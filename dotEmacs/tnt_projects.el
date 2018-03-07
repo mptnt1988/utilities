@@ -289,7 +289,7 @@ If not, open NeoTree with default directory."
 
 ;;--------------------------------------
 ;; Tab key to indent, untab and delete trailing whitespace
-(defun tab-space-indent ()
+(defun tnt_projects_tab-space-indent ()
   "Press tab key to indent, untab and delete trailing whitespace."
   (interactive)
   (save-excursion
@@ -313,7 +313,23 @@ If not, open NeoTree with default directory."
       (untabify (line-beginning-position)
                 (line-end-position))))
   (indent-for-tab-command))
-(global-set-key (kbd "TAB") 'tab-space-indent)
+(global-set-key (kbd "TAB") 'tnt_projects_tab-space-indent)
+
+;;--------------------------------------
+;; Duplicate current line
+(defun tnt_projects_duplicate-line ()
+  "Duplicate current line."
+  (interactive)
+  (let ((temp (get-register 57)))
+    (copy-to-register 57
+                      (line-beginning-position)
+                      (line-end-position))
+    (move-end-of-line 1)
+    (newline)
+    (insert-register 57)
+    (set-register 57 temp)
+    ))
+(global-set-key (kbd "C-c d") 'tnt_projects_duplicate-line)
 
 ;;--------------------------------------
 ;; Highlight current line
