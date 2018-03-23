@@ -79,6 +79,7 @@ _mp_last_exit_status () {
 mp_change_PS1 () {
     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
 pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
+condaenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_condaenv_info; fi);\
 background=$(_mp_bg_color 18);\
 historyId=$(_mp_color 255);\
 user=$(_mp_color 3);\
@@ -90,7 +91,7 @@ branch=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n${pyvenv}$background$user\u$at@$host\h $time\A($exit_status$background)  $dir${PWD} $branch$bold$gitbr$reset\n"'
+PS1="\n${condaenv}${pyvenv}$background$user\u$at@$host\h $time\A($exit_status$background)  $dir${PWD} $branch$bold$gitbr$reset\n"'
 }
 
 ###=============================================================================
@@ -121,6 +122,18 @@ mp_show_colors () {
 
 mp_logout () {
     gnome-session-quit --no-prompt
+}
+
+###=============================================================================
+### Python conda env prompt adding
+### Usage:
+###   - To enable custom conda env prompt
+###       mp_pyvenv_prompt
+###   - To show the prompt
+###       mp_condaenv_info
+
+mp_condaenv_info () {
+    [[ -n "$CONDA_DEFAULT_ENV" ]] && echo "<conda: $CONDA_DEFAULT_ENV>\n"
 }
 
 ###=============================================================================
