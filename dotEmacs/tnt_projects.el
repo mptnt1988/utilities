@@ -25,6 +25,7 @@
     iy-go-to-char
     drag-stuff
     flycheck
+    yaml-mode
     ))
 
 (tntLib_install-myPkgs)
