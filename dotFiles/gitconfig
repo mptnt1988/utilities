@@ -2,7 +2,7 @@
     name = Tuan Tran
     email = mptnt1988@gmail.com
 [core]
-    editor = emacs -nw
+    editor = vi
     autocrlf = false
     whitespace = fix,indent-with-non-tab,trailing-space,cr-at-eol
 [color]
