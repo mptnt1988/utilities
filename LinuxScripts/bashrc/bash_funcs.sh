@@ -76,22 +76,24 @@ _mp_last_exit_status () {
 }
 
 # NOTE: git required
+# TODO: change color variable names
 mp_change_PS1 () {
+    TERM="xterm-256color"
     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
 pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
 condaenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_condaenv_info; fi);\
 background=$(_mp_bg_color 18);\
-historyId=$(_mp_color 255);\
+istmux=$(mp_tmux_info);\
 user=$(_mp_color 3);\
 at=$(_mp_color 255);\
 host=$(_mp_color 3);\
 time=$(_mp_color 255);\
 dir=$(_mp_color 208);\
-branch=$(_mp_color 40);\
+c_green=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n${condaenv}${pyvenv}$background$user\u$at@$host\h $time\A($exit_status$background)  $dir${PWD} $branch$bold$gitbr$reset\n"'
+PS1="\n${condaenv}${pyvenv}$background$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
 }
 
 ###=============================================================================
@@ -202,4 +204,13 @@ mp_pyvenv () {
                 return 1
             fi
     esac
+}
+
+###=============================================================================
+### TMUX use prompt adding
+### Usage:
+###   mp_tmux_info
+
+mp_tmux_info () {
+    [[ -z ${TMUX+x} ]] || echo "(tmux)"
 }
