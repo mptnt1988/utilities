@@ -1,0 +1,2 @@
+. /home/tuantran/miniconda3/etc/profile.d/conda.sh
+conda activate entry_task
