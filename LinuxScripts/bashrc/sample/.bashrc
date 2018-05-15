@@ -116,6 +116,9 @@ fi
 ### Tuan added ###
 ###------------###
 
+# TMUX
+[ -z "$TMUX"  ] && tmux
+
 # LOAD FUNCTIONS
 source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
 
