@@ -1,2 +1,3 @@
-. /home/tuantran/miniconda3/etc/profile.d/conda.sh
+CONDA=$(which conda)
+. ${CONDA%/*/*}/etc/profile.d/conda.sh
 conda activate entry_task
