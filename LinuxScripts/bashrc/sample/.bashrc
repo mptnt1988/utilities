@@ -122,6 +122,9 @@ fi
 # LOAD FUNCTIONS
 source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
 
+# BIND KEYS
+mp_bind_keys
+
 # SOFTWARE DIR
 mp_add_PATH ~/programs/_softs_/
 

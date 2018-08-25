@@ -1,9 +1,19 @@
 #!/bin/bash
 
 ###=============================================================================
+### Bind keys
+### Usage:
+###   mp_bind_keys
+
+mp_bind_keys () {
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+}
+
+###=============================================================================
 ### Join string with specified delimiter
 ### Usage:
-###   string_join <delimiter> <arg1> <arg2> ...
+###   mp_string_join <delimiter> <arg1> <arg2> ...
 ### Ex:
 ###   $ mp_string_join : a b c
 ###       a:b:c
