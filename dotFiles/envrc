@@ -1,3 +1,7 @@
 CONDA=$(which conda)
 . ${CONDA%/*/*}/etc/profile.d/conda.sh
-conda activate entry_task
+conda activate campaign-mgmt
+export $(grep -v '^#' deploy/docker/.env | xargs)
+export ENV=dev
+export $(grep -v '^#' deploy/docker/project/env/${ENV}.env | xargs)
+
