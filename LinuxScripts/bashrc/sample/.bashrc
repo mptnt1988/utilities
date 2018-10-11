@@ -117,7 +117,7 @@ fi
 ###------------###
 
 # TMUX
-[ -z "$TMUX"  ] && tmux
+[ -z "$TMUX" ] && [ -z "${MP_MOBAXTERM}" ] && tmux
 
 # LOAD FUNCTIONS
 source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
@@ -136,16 +136,15 @@ mp_change_PS1
 
 # PYTHON
 # python dir
-mp_add_PATH ~/.local/bin/
 export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
 mp_venv_prompt
-# Ignore TensorFlow warnings
-export TF_CPP_MIN_LOG_LEVEL=2
 # Start jupyter notebook
 alias mp_ipynb='jupyter notebook --ip=* --no-browser'
 # Support listing & setting virtualenv
 mp_pyvenv -d /home/tuantran/workspace/_python_test_/_venv_
+# Setting for Django manage.py auto-complete
+source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
 
 # EMACS
 alias emacsnw='emacs -nw'
@@ -156,6 +155,9 @@ mkdir ~/.npm-global 2>/dev/null
 npm config set prefix '~/.npm-global'
 mp_add_PATH ~/.npm-global/bin/
 export NODE_PATH=~/.npm-global/lib/node_modules/
+
+# DIRENV
+eval "$(direnv hook bash)"
 
 ###------###
 ### Tran ###
