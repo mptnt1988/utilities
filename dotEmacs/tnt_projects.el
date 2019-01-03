@@ -20,7 +20,6 @@
     smartparens
     auto-highlight-symbol
     multiple-cursors
-    xclip
     command-log-mode
     iy-go-to-char
     drag-stuff
@@ -110,16 +109,6 @@ If not, open NeoTree with default directory."
 (global-set-key (kbd "C-c m m <") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c m u >") 'mc/unmark-next-like-this)
 (global-set-key (kbd "C-c m u <") 'mc/unmark-previous-like-this)
-
-;;---------------------------
-;; XCLIP
-;;---------------------------
-
-;; Note: Linux xclip required
-(require 'xclip)
-
-(xclip-mode 1)
-(global-set-key (kbd "C-M-y") 'x-clipboard-yank)
 
 ;;---------------------------
 ;; BOOKMARK-LINE
