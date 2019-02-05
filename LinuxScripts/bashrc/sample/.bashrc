@@ -140,7 +140,8 @@ export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
 mp_venv_prompt
 # Start jupyter notebook
-alias mp_ipynb='jupyter notebook --ip=* --no-browser'
+alias mp_ipynb='jupyter notebook --ip=0.0.0.0 --no-browser'
+alias mp_ipylab='jupyter lab --ip=0.0.0.0 --no-browser'
 # Support listing & setting virtualenv
 mp_pyvenv -d /home/tuantran/workspace/_python_test_/_venv_
 # Setting for Django manage.py auto-complete
