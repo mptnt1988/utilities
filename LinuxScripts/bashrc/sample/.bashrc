@@ -144,6 +144,8 @@ alias mp_jnb='jupyter notebook --ip=0.0.0.0 --no-browser'
 alias mp_jlab='jupyter lab --ip=0.0.0.0 --no-browser'
 alias mp_jnbl='jupyter notebook list'
 alias mp_jnbs='jupyter notebook stop'
+alias mp_jksl='jupyter kernelspec list'
+alias mp_jksr='jupyter kernelspec remove'
 # Support listing & setting virtualenv
 mp_pyvenv -d /home/tuantran/workspace/_python_test_/_venv_
 # Setting for Django manage.py auto-complete
