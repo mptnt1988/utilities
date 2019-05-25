@@ -195,6 +195,38 @@ If not, open NeoTree with default directory."
 (eval-after-load "dired"
   '(define-key dired-mode-map "Y" 'tnt_projects_dired-copy-file-here))
 
+;;------------------
+;; CLIPBOARD YANK
+;;------------------
+
+(let ((xclip-mode-backup xclip-mode))
+  (xclip-mode)
+  (setq xclip-mode xclip-mode-backup)
+  )
+
+(defun tnt_projects_clipboard-copy ()
+  "Turn on xclip-mode, copy to clipboard and then turn it back."
+  (interactive)
+  (let ((xclip-mode-backup xclip-mode))
+    (setq xclip-mode t)
+    (call-interactively (global-key-binding "\M-w"))
+    (setq xclip-mode xclip-mode-backup)
+    )
+  )
+
+(defun tnt_projects_clipboard-cut ()
+  "Turn on xclip-mode, cut to clipboard and then turn it back."
+  (interactive)
+  (let ((xclip-mode-backup xclip-mode))
+    (setq xclip-mode t)
+    (call-interactively (global-key-binding "\C-w"))
+    (setq xclip-mode xclip-mode-backup)
+    )
+  )
+
+(global-set-key (kbd "C-c c") 'tnt_projects_clipboard-copy)
+(global-set-key (kbd "C-c x") 'tnt_projects_clipboard-cut)
+
 ;;---------------------------
 ;; TRACE & DEBUG
 ;;---------------------------
