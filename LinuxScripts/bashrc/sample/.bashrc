@@ -159,9 +159,6 @@ export GOROOT=/usr/local/go
 export GOPATH=/home/tuantran/programs/_softs_/go
 mp_add_PATH $GOROOT/bin:$GOPATH/bin
 
-# EMACS
-alias emacsnw='emacs -nw'
-
 # NODEJS - NPM
 # global installation - change dir
 mkdir ~/.npm-global 2>/dev/null
@@ -172,11 +169,20 @@ export NODE_PATH=~/.npm-global/lib/node_modules/
 # DIRENV
 eval "$(direnv hook bash)"
 
+# SSH
+alias sshtunnel='ssh -N -o GatewayPorts=yes'
+complete -F _ssh sshtunnel
+alias sshtunnell='ssh -N -o GatewayPorts=yes -L'
+complete -F _ssh sshtunnell
+alias sshtunnelr='ssh -N -o GatewayPorts=yes -R'
+complete -F _ssh sshtunnelr
+
 # ALIAS / CONSTANT
 alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
 alias cd_utilities='cd ~/programs/utilities/'
 alias condaa='conda activate'
 alias condad='conda deactivate'
+alias emacsnw='emacs -nw'
 
 ###------###
 ### Tran ###
