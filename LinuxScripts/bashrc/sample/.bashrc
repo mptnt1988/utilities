@@ -171,11 +171,12 @@ eval "$(direnv hook bash)"
 
 # SSH
 alias sshtunnel='ssh -N -o GatewayPorts=yes'
-complete -F _ssh sshtunnel
 alias sshtunnell='ssh -N -o GatewayPorts=yes -L'
-complete -F _ssh sshtunnell
 alias sshtunnelr='ssh -N -o GatewayPorts=yes -R'
-complete -F _ssh sshtunnelr
+# for these auto-completions to work, make "ssh" + TAB work first
+complete -F _ssh sshtn
+complete -F _ssh sshtl
+complete -F _ssh sshtr
 
 # ALIAS / CONSTANT
 alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
