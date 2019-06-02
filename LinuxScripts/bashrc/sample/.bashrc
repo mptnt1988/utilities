@@ -135,7 +135,7 @@ mp_add_PATH ~/.config/composer/vendor/bin/
 mp_change_PS1
 
 # PYTHON
-# python dir
+# Python dir
 export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
 mp_venv_prompt
@@ -146,10 +146,18 @@ alias mp_jnbl='jupyter notebook list'
 alias mp_jnbs='jupyter notebook stop'
 alias mp_jksl='jupyter kernelspec list'
 alias mp_jksr='jupyter kernelspec remove'
-# Support listing & setting virtualenv
-mp_pyvenv -d /home/tuantran/workspace/_python_test_/_venv_
 # Setting for Django manage.py auto-complete
 source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
+# Other alias by me
+alias mp_pms='python manage.py shell'
+# Added by Miniconda2 installer
+# export PATH="/home/tuantran/miniconda2/bin:$PATH"
+# . /home/tuantran/miniconda2/etc/profile.d/conda.sh
+
+# GO
+export GOROOT=/usr/local/go
+export GOPATH=/home/tuantran/programs/_softs_/go
+mp_add_PATH $GOROOT/bin:$GOPATH/bin
 
 # EMACS
 alias emacsnw='emacs -nw'
@@ -163,6 +171,12 @@ export NODE_PATH=~/.npm-global/lib/node_modules/
 
 # DIRENV
 eval "$(direnv hook bash)"
+
+# ALIAS / CONSTANT
+alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
+alias cd_utilities='cd ~/programs/utilities/'
+alias condaa='conda activate'
+alias condad='conda deactivate'
 
 ###------###
 ### Tran ###
