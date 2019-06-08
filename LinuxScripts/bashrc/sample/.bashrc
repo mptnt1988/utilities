@@ -142,6 +142,7 @@ mp_venv_prompt
 # Jupyter notebook
 alias mp_jnb='jupyter notebook --ip=0.0.0.0 --no-browser'
 alias mp_jlab='jupyter lab --ip=0.0.0.0 --no-browser'
+alias mp_jlabs='~/programs/utilities/LinuxScripts/jupyter.sh'
 alias mp_jnbl='jupyter notebook list'
 alias mp_jnbs='jupyter notebook stop'
 alias mp_jksl='jupyter kernelspec list'
