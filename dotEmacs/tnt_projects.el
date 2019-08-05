@@ -25,6 +25,7 @@
     drag-stuff
     flycheck
     yaml-mode
+    xclip
     ))
 
 (tntLib_install-myPkgs)
