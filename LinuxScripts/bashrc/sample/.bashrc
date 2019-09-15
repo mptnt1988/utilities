@@ -116,6 +116,9 @@ fi
 ### Tuan added ###
 ###------------###
 
+# FOR MACOS
+source $(brew --prefix)/etc/bash_completion
+
 # TMUX
 [ -z "$TMUX" ] && [ -z "${MP_MOBAXTERM}" ] && tmux
 
