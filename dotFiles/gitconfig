@@ -1,58 +1,58 @@
 [user]
-    name = Tuan Tran
-    email = mptnt1988@gmail.com
+	name = Tuan Tran
+	email = mptnt1988@gmail.com
 [core]
-    editor = vi
-    autocrlf = false
-    whitespace = fix,indent-with-non-tab,trailing-space,cr-at-eol
+	editor = vi
+	autocrlf = false
+	whitespace = fix,indent-with-non-tab,trailing-space,cr-at-eol
 [color]
-    ui = auto
+	ui = auto
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 [color "status"]
-    added = green
-    changed = yellow
-    header = white
-    untracked = cyan
+	added = green
+	changed = yellow
+	header = white
+	untracked = cyan
 [alias]
-    a = add
-    st = status
-    stu = status -u
-    co = checkout
-    br = branch
-    cm = commit
-    cp = cherry-pick
-    cpc = cherry-pick --continue
-    cpa = cherry-pick --abort
-    mb = merge-base
-    rs = reset
-    mt = mergetool
-    cf = config
-    d = diff
-    rb = rebase
-    rbc = rebase --continue
-    rba = rebase --abort
-    f = fetch
-    ru = remote update
-    ps = push
-    pl = pull
-    pr = pull --rebase
-    m = merge
-    ms = merge --squash
-    tree  = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=short
-    treer = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=relative
-    treei = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=iso
+	a = add
+	st = status
+	stu = status -u
+	co = checkout
+	br = branch
+	cm = commit
+	cp = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
+	mb = merge-base
+	rs = reset
+	mt = mergetool
+	cf = config
+	d = diff
+	rb = rebase
+	rbc = rebase --continue
+	rba = rebase --abort
+	f = fetch
+	ru = remote update
+	ps = push
+	pl = pull
+	pr = pull --rebase
+	m = merge
+	ms = merge --squash
+	tree  = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=short
+	treer = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=relative
+	treei = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=iso
 [status]
-    showUntrackedFiles = no
+	showUntrackedFiles = no
 [merge]
-    tool = meld
+	tool = meld
 [push]
-    default = simple
+	default = simple
