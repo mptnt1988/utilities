@@ -1,3 +1,0 @@
-set showmode nonumber ai ts=4 expandtab
-abbr _ube #!/usr/bin/env
-nmap <C-N> :set invnumber<CR>

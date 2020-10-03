@@ -1,0 +1,173 @@
+" ----------------------------------------
+" NORMAL SETTINGS
+"
+
+" Window split
+set splitbelow
+set splitright
+" Split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" UTF-8 support
+set encoding=utf-8
+
+" Flagging unnecessary whitespace
+highlight BadWhitespace ctermbg=red guibg=red
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Line Numbering
+set nu
+
+" System Clipboard
+set clipboard=unnamed
+
+" CWD at active buffer
+set autochdir
+
+" Highlight current line
+set cursorline
+
+
+" ----------------------------------------
+" VUNDLE SETTINGS
+"
+set nocompatible              " required
+filetype off                  " required
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
+
+" Let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" then fire up VIM and run:
+"   :PluginInstall
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ParamagicDev/vim-medic_chalk'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'Nopik/vim-nerdtree-direnter'
+Plugin 'ivalkeen/nerdtree-execute'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'preservim/nerdcommenter'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'kien/ctrlp.vim'
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" ----------------------------------------
+" PLUGIN SETTINGS
+"
+
+" tmhedberg/SimpylFold  
+let g:SimpylFold_docstring_preview=1
+
+" Valloric/YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_autoclose_preview_window_after_completion = 1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" scrooloose/nerdtree
+autocmd vimenter * NERDTree | wincmd p
+autocmd StdinReadPre * let s:std_in = 1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeChDirMode = 2
+let NERDTreeDirArrows = 1
+let NERDTreeIgnore = ['\.pyc$', '\~$', '__pycache__$']
+let NERDTreeMapOpenInTab = '<ENTER>'
+let NERDTreeMinimalUI = 1
+let NERDTreeQuitOnOpen = 0
+let NERDTreeWinPos = "right"
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+" preservim/nerdcommenter
+let g:NERDSpaceDelims = 1                                                           " Add spaces after comment delimiters by default
+let g:NERDCompactSexyComs = 1                                                       " Use compact syntax for prettified multi-line comments
+let g:NERDDefaultAlign = 'left'                                                     " Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDAltDelims_java = 1                                                        " Set a language to use its alternate delimiters by default
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }               " Add your own custom formats or override the defaults
+let g:NERDCommentEmptyLines = 1                                                     " Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDTrimTrailingWhitespace = 1                                                " Enable trimming of trailing whitespace when uncommenting
+let g:NERDToggleCheckAllLines = 1                                                   " Enable NERDCommenterToggle to check all selected lines is commented or not 
+
+" Lokaltog/powerline
+" - Install fonts from https://github.com/powerline/fonts/tree/master/SourceCodePro
+set laststatus=2
+set t_Co=256
+
+" jnurmine/Zenburn
+" altercation/vim-colors-solarized
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme medic_chalk
+endif
+
+
+" ----------------------------------------
+" LANGUAGE SETTINGS
+"
+
+" Front-End
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+" Python PEP8
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+let python_highlight_all = 1
+syntax on
+
+
+" Python with conda env support
+python3 << EOF
+import os
+import subprocess
+if 'CONDA_DEFAULT_ENV' in os.environ:
+  conda_env_name = os.environ['CONDA_DEFAULT_ENV']
+  process = subprocess.Popen(['which', 'conda'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  stdout, stderr = process.communicate()
+  if not stdout:
+    pass
+  else:
+    conda_app = stdout.decode().strip()
+    exec(open(conda_app).read(), dict(__file__=conda_app, commandline=['activate', conda_env_name]))
+EOF
