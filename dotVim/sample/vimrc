@@ -36,6 +36,9 @@ set autochdir
 " Highlight current line
 set cursorline
 
+" Auto remove trailing whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
 
 " ----------------------------------------
 " VUNDLE SETTINGS
