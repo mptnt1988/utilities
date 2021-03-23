@@ -1,0 +1,3 @@
+CONDA=$(which conda)
+. ${CONDA%/*/*}/etc/profile.d/conda.sh
+conda activate $(basename "$PWD")
