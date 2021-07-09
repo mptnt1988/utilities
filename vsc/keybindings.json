@@ -1,0 +1,19 @@
+[
+    {
+        "key": "ctrl+cmd+u cmd+t",
+        "command": "workbench.action.terminal.newWithCwd",
+        "args": {
+        "cwd": "${fileDirname}"
+        }
+    },
+    {
+        "key": "ctrl+cmd+u cmd+k",
+        "command": "workbench.action.terminal.focus",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+cmd+u cmd+k",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    }
+]
