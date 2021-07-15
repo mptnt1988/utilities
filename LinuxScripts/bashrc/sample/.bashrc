@@ -142,14 +142,13 @@ mp_change_PS1
 export PYTHONSTARTUP=~/.pythonrc
 # Add Python venv custom prompt
 mp_venv_prompt
-# Jupyter notebook
-alias mp_jnb='jupyter notebook --ip=0.0.0.0 --no-browser'
-alias mp_jlab='jupyter lab --ip=0.0.0.0 --no-browser'
-alias mp_jlabs='~/programs/utilities/LinuxScripts/jupyter.sh'
-alias mp_jnbl='jupyter notebook list'
-alias mp_jnbs='jupyter notebook stop'
-alias mp_jksl='jupyter kernelspec list'
-alias mp_jksr='jupyter kernelspec remove'
+# Jupyter lab
+alias mp_jl   ='jupyter lab --ip=0.0.0.0 --no-browser'
+alias mp_jls  ='jupyter lab stop'
+alias mp_jll  ='jupyter lab list'
+alias mp_jld  ='cd ~ && jupyter lab --ip=0.0.0.0 --no-browser >/tmp/cron_jupyter.log 2>&1 &'
+alias mp_jksl ='jupyter kernelspec list'
+alias mp_jksr ='jupyter kernelspec remove'
 # Setting for Django manage.py auto-complete
 source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
 # Other alias by me

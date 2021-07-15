@@ -15,5 +15,9 @@
         "key": "ctrl+cmd+u cmd+k",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+cmd+u ctrl+cmd+v",
+        "command": "toggleVim"
     }
 ]
