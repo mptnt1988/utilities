@@ -139,8 +139,6 @@ mp_logout () {
 ###=============================================================================
 ### Python conda env prompt adding
 ### Usage:
-###   - To enable custom conda env prompt
-###       mp_pyvenv_prompt
 ###   - To show the prompt
 ###       mp_condaenv_info
 
@@ -152,7 +150,7 @@ mp_condaenv_info () {
 ### Python virtualenv prompt adding
 ### Usage:
 ###   - To enable custom prompt
-###       mp_pyvenv_prompt
+###       mp_venv_prompt
 ###   - To show the prompt
 ###       mp_venv_info
 
@@ -223,4 +221,20 @@ mp_pyvenv () {
 
 mp_tmux_info () {
     [[ -z ${TMUX+x} ]] || echo "(tmux)"
+}
+
+###=============================================================================
+### Create conda env & corresponding .envrc
+### Usage:
+###   mp_conda_envrc <name>
+
+mp_conda_envrc () {
+    [ -z "$1" ] && { echo "Error: Please input conda env name"; return; }
+    conda create -y -n $1 python=3.6
+    cat <<EOF > .envrc
+CONDA=\$(which conda)
+. \${CONDA%/*/*}/etc/profile.d/conda.sh
+conda activate $1
+EOF
+    direnv allow
 }
