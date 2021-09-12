@@ -230,7 +230,9 @@ mp_tmux_info () {
 
 mp_conda_envrc () {
     [ -z "$1" ] && { echo "Error: Please input conda env name"; return; }
-    conda create -y -n $1 python=3.6
+    local pyver=$2
+    [ -z "$pyver" ] && pyver="3.6"
+    conda create -y -n $1 python=$pyver
     cat <<EOF > .envrc
 CONDA=\$(which conda)
 . \${CONDA%/*/*}/etc/profile.d/conda.sh
