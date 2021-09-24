@@ -116,26 +116,34 @@ fi
 ### Tuan added ###
 ###------------###
 
+
 # FOR MACOS
 source $(brew --prefix)/etc/bash_completion
+
 
 # TMUX
 [ -z "$TMUX" ] && [ -z "${MP_MOBAXTERM}" ] && tmux
 
+
 # LOAD FUNCTIONS
 source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
+
 
 # BIND KEYS
 mp_bind_keys
 
+
 # SOFTWARE DIR
 mp_add_PATH ~/programs/_softs_/
+
 
 # PHP LARAVEL
 mp_add_PATH ~/.config/composer/vendor/bin/
 
+
 # CHANGE BASH PROMPT
 mp_change_PS1
+
 
 # PYTHON
 # Python dir
@@ -157,10 +165,6 @@ alias mp_pms='python manage.py shell'
 # export PATH="/home/tuantran/miniconda2/bin:$PATH"
 # . /home/tuantran/miniconda2/etc/profile.d/conda.sh
 
-# GO
-export GOROOT=/usr/local/go
-export GOPATH=/home/tuantran/programs/_softs_/go
-mp_add_PATH $GOROOT/bin:$GOPATH/bin
 
 # NODEJS - NPM
 # global installation - change dir
@@ -169,24 +173,52 @@ npm config set prefix '~/.npm-global'
 mp_add_PATH ~/.npm-global/bin/
 export NODE_PATH=~/.npm-global/lib/node_modules/
 
+
 # DIRENV
 eval "$(direnv hook bash)"
 
-# SSH
-alias sshtunnel='ssh -N -o GatewayPorts=yes'
-alias sshtunnell='ssh -N -o GatewayPorts=yes -L'
-alias sshtunnelr='ssh -N -o GatewayPorts=yes -R'
-# for these auto-completions to work, make "ssh" + TAB work first
-complete -F _ssh sshtn
-complete -F _ssh sshtl
-complete -F _ssh sshtr
 
-# ALIAS / CONSTANT
-alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
-alias cd_utilities='cd ~/programs/utilities/'
+# SSH
+alias mp_sshtunnel='ssh -N -o GatewayPorts=yes'
+alias mp_sshtunnell='ssh -N -o GatewayPorts=yes -L'
+alias mp_sshtunnelr='ssh -N -o GatewayPorts=yes -R'
+# for these auto-completions to work, make "ssh" + TAB work first
+complete -F _ssh mp_sshtunnel
+complete -F _ssh mp_sshtunnell
+complete -F _ssh mp_sshtunnelr
+
+
+# K8S
+# kubectl completion (with bash-completion installed)
+source /dev/stdin <<<"$(kubectl completion bash)"
+
+
+# CONDA
 alias condaa='conda activate'
 alias condad='conda deactivate'
+alias condar='conda env remove -n'
+alias condacwd='conda activate $(basename $PWD)'
+
+
+# EMACS
 alias emacsnw='emacs -nw'
+
+
+# DOCKER
+alias mp_docker_run='docker run --rm -it --network local_tech $(docker build -q .) && docker image prune -f > /dev/null'
+alias mp_mysql='docker run -it --network local_tech --rm mysql mysql -hmysql -uroot -pasdfasdf'
+alias mp_redis='docker run -it --network local_tech --rm redis redis-cli -h redis'
+alias mp_postgres='docker run -it --network local_tech --rm postgres psql -h postgres -U postgres'
+alias mp_cassandra='docker run -it --network local_tech --rm cassandra cqlsh cassandra'
+
+export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
+
+
+# ALIAS / CONSTANT
+#   directories
+alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
+alias cd_utilities='cd ~/programs/utilities/'
+
 
 ###------###
 ### Tran ###
