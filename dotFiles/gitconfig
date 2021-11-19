@@ -52,6 +52,7 @@
 	treei = log --pretty=format:'%Cred%h%C(yellow)%d %Creset%s %Cgreen(%cd) %C(blue)<%an>%Creset' --abbrev-commit --graph --date=iso
 [status]
 	showUntrackedFiles = no
+	submoduleSummary = true
 [merge]
 	tool = meld
 [push]
