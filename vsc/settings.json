@@ -1,0 +1,29 @@
+{
+    "git.autofetch": true,
+    "workbench.sideBar.location": "right",
+    "timeline.excludeSources": [],
+    "files.autoSave": "off",
+    "go.autocompleteUnimportedPackages": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "plantuml.java": "/Users/shopeevn/.sdkman/candidates/java/current/bin/java",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.minimap.enabled": false,
+    "workbench.editor.showTabs": false,
+    "terminal.integrated.inheritEnv": false,
+    "sqltools.useNodeRuntime": true,
+    "thunder-client.codeSnippetLanguage": "js-axios",
+    "window.openFoldersInNewWindow": "on",
+    "python.terminal.launchArgs": [
+        "-m",
+        "IPython",
+        "--no-autoindent",
+    ]    
+}

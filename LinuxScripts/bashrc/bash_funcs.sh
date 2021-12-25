@@ -87,11 +87,29 @@ _mp_last_exit_status () {
 
 # NOTE: git required
 # TODO: change color variable names
+# mp_change_PS1 () {
+#     TERM="xterm-256color"
+#     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
+# pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
+# condaenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_condaenv_info; fi);\
+# pyenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_pyenv_info; fi);\
+# background=$(_mp_bg_color 18);\
+# istmux=$(mp_tmux_info);\
+# user=$(_mp_color 3);\
+# at=$(_mp_color 255);\
+# host=$(_mp_color 3);\
+# time=$(_mp_color 255);\
+# dir=$(_mp_color 208);\
+# c_green=$(_mp_color 40);\
+# gitbr=$(__git_ps1 2>/dev/null);\
+# bold=$(tput bold);\
+# reset=$(_mp_reset_color);\
+# PS1="\n${condaenv}${pyvenv}${pyenv}$background$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
+# }
 mp_change_PS1 () {
     TERM="xterm-256color"
     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
-pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
-condaenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_condaenv_info; fi);\
+pyenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_pyenv_info; fi);\
 background=$(_mp_bg_color 18);\
 istmux=$(mp_tmux_info);\
 user=$(_mp_color 3);\
@@ -103,7 +121,7 @@ c_green=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n${condaenv}${pyvenv}$background$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
+PS1="\n${pyenv}$background$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
 }
 
 ###=============================================================================
@@ -139,6 +157,8 @@ mp_logout () {
 ###=============================================================================
 ### Python conda env prompt adding
 ### Usage:
+###   - To enable custom prompt
+###       mp_venv_prompt
 ###   - To show the prompt
 ###       mp_condaenv_info
 
@@ -158,11 +178,26 @@ mp_venv_info () {
     [[ -n "$VIRTUAL_ENV" ]] && echo "<venv: $VIRTUAL_ENV>\n"
 }
 
+###=============================================================================
+### Python pyenv prompt adding
+### Usage:
+###   - To enable custom prompt
+###       mp_venv_prompt
+###   - To show the prompt
+###       mp_venv_info
+
+mp_pyenv_info () {
+    [[ -n "$PYENV_VIRTUALENV_INIT" ]] && echo "<pyenv: $(pyenv version)>\n"
+}
+
+
+#--------
 mp_venv_prompt () {
     # Disable default virtualenv prompt change
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     export MP_PYVENV_ALLOWED=1
 }
+#--------
 
 ###=============================================================================
 ### Python venv listing, creating and activating

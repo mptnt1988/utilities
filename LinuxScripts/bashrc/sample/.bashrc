@@ -146,10 +146,18 @@ mp_change_PS1
 
 
 # PYTHON
+
+# Pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
 # Python dir
 export PYTHONSTARTUP=~/.pythonrc
+
 # Add Python venv custom prompt
 mp_venv_prompt
+
 # Jupyter lab
 alias mp_jl   ='jupyter lab --ip=0.0.0.0 --no-browser'
 alias mp_jls  ='jupyter lab stop'
@@ -157,13 +165,13 @@ alias mp_jll  ='jupyter lab list'
 alias mp_jld  ='cd ~ && jupyter lab --ip=0.0.0.0 --no-browser >/tmp/cron_jupyter.log 2>&1 &'
 alias mp_jksl ='jupyter kernelspec list'
 alias mp_jksr ='jupyter kernelspec remove'
+
 # Setting for Django manage.py auto-complete
 source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
-# Other alias by me
-alias mp_pms='python manage.py shell'
-# Added by Miniconda2 installer
-# export PATH="/home/tuantran/miniconda2/bin:$PATH"
-# . /home/tuantran/miniconda2/etc/profile.d/conda.sh
+
+
+# GOLANG
+[[ -s "/Users/shopeevn/.gvm/scripts/gvm" ]] && source "/Users/shopeevn/.gvm/scripts/gvm"
 
 
 # NODEJS - NPM
