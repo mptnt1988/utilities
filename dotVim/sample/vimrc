@@ -87,7 +87,7 @@ filetype plugin indent on    " required
 " PLUGIN SETTINGS
 "
 
-" tmhedberg/SimpylFold  
+" tmhedberg/SimpylFold
 let g:SimpylFold_docstring_preview=1
 
 " Valloric/YouCompleteMe
@@ -121,7 +121,7 @@ let g:NERDAltDelims_java = 1                                                    
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }               " Add your own custom formats or override the defaults
 let g:NERDCommentEmptyLines = 1                                                     " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDTrimTrailingWhitespace = 1                                                " Enable trimming of trailing whitespace when uncommenting
-let g:NERDToggleCheckAllLines = 1                                                   " Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1                                                   " Enable NERDCommenterToggle to check all selected lines is commented or not
 
 " Lokaltog/powerline
 " - Install fonts from https://github.com/powerline/fonts/tree/master/SourceCodePro
@@ -161,7 +161,7 @@ let python_highlight_all = 1
 syntax on
 
 
-" Python with conda env support
+" Python with virtual env support
 python3 << EOF
 import os
 import subprocess
@@ -174,4 +174,8 @@ if 'CONDA_DEFAULT_ENV' in os.environ:
   else:
     conda_app = stdout.decode().strip()
     exec(open(conda_app).read(), dict(__file__=conda_app, commandline=['activate', conda_env_name]))
+elif 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_script = os.environ['HOME'] + '/programs/utilities/dotVim/supports/venv_activation/activate_this.py'
+  exec(open(activate_script).read(), dict(__file__=activate_script))
 EOF
