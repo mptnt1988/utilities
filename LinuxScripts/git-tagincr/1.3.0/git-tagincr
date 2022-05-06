@@ -1,0 +1,65 @@
+#!/bin/bash
+
+VERSION=1.3.0
+
+get-tagged-nums () {
+    local count=0
+    local arr
+    for i in $(git tag -l | grep ^$1[0-9]*$)
+    do
+        (( count++ ))
+        arr[$count]=${i:${#1}}
+    done
+    echo ${arr[@]}
+}
+
+get-tag-num () {
+    max=${ar[0]}
+    for n in $(get-tagged-nums $@) ; do
+        ((n > max)) && max=$n
+    done
+    echo $((max + 1))
+}
+
+join-by () {
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+echo-tag-usage () {
+    echo "Usage:"
+    echo -e "\tgit shopeevn tag"
+}
+
+handle-tag-cmd () {
+    arr=${1:4}
+    newtagnum=$(get-tag-num $(join-by "-" ${arr[@]} ""))
+    newtag=$(join-by "-" ${arr[@]} ${newtagnum})
+    dest=HEAD
+    git tag ${newtag} ${dest}
+    if [ $? -eq 0 ]; then
+        echo -e "Successfully tagged...\n${newtag}\n...to below commit:"
+        echo -e "\t$(git rev-list --format="%h - %s" --max-count=1 ${dest} | tail +2)"
+    fi
+}
+
+CMD=$1
+
+if [ "${CMD}" == "version" ]; then
+    echo "Version: ${VERSION}"
+    exit 0
+fi
+
+if [[ "${CMD}" =~ ^(tag-dev|tag-test|tag-uat)$ ]]; then
+    shift
+    handle-tag-cmd ${CMD}
+else
+    echo "Cmd \"${CMD}\" is not allowed"
+    echo "Usage:"
+    echo -e "\tgit tagincr tag-dev"
+    echo -e "\tgit tagincr tag-test"
+    echo -e "\tgit tagincr tag-uat"
+    echo -e "\tgit tagincr version"
+    exit 1
+fi
