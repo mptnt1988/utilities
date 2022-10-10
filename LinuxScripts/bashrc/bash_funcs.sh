@@ -111,6 +111,7 @@ mp_change_PS1 () {
     PROMPT_COMMAND='exit_status=$(_mp_last_exit_status);\
 pyvenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_venv_info; fi);\
 pyenv=$(if [[ -n "$MP_PYVENV_ALLOWED" ]]; then mp_pyenv_info; fi);\
+nix=$(if [[ -n "$IN_NIX_SHELL" ]]; then echo "[nix]  "; fi);\
 background=$(_mp_bg_color 18);\
 istmux=$(mp_tmux_info);\
 user=$(_mp_color 3);\
@@ -122,7 +123,7 @@ c_green=$(_mp_color 40);\
 gitbr=$(__git_ps1 2>/dev/null);\
 bold=$(tput bold);\
 reset=$(_mp_reset_color);\
-PS1="\n${pyvenv}${pyenv}$background$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
+PS1="\n${pyvenv}${pyenv}$background${nix}$user\u$at@$host\h $c_green$istmux$time\A($exit_status$background)  $dir${PWD} $c_green$bold$gitbr$reset\n"'
 }
 
 ###=============================================================================
