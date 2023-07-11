@@ -162,7 +162,7 @@ syntax on
 
 
 " Python with virtual env support
-python3 << EOF
+python << EOF
 import os
 import subprocess
 if 'CONDA_DEFAULT_ENV' in os.environ:

@@ -226,6 +226,9 @@ export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
 #   directories
 alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
 alias cd_utilities='cd ~/programs/utilities/'
+#   utilities
+alias mp_ip_public='curl api.pingto.site/client'
+alias mp_web_server='python -m http.server --directory / 4000'
 
 
 ###------###
