@@ -118,6 +118,7 @@ fi
 
 
 # FOR MACOS
+eval "$(/opt/homebrew/bin/brew shellenv)"
 source $(brew --prefix)/etc/bash_completion
 
 
