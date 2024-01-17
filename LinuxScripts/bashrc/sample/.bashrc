@@ -160,12 +160,12 @@ export PYTHONSTARTUP=~/.pythonrc
 mp_venv_prompt
 
 # Jupyter lab
-alias mp_jl   ='jupyter lab --ip=0.0.0.0 --no-browser'
-alias mp_jls  ='jupyter lab stop'
-alias mp_jll  ='jupyter lab list'
-alias mp_jld  ='cd ~ && jupyter lab --ip=0.0.0.0 --no-browser >/tmp/cron_jupyter.log 2>&1 &'
-alias mp_jksl ='jupyter kernelspec list'
-alias mp_jksr ='jupyter kernelspec remove'
+alias mp_jl='jupyter lab --ip=0.0.0.0 --no-browser'
+alias mp_jls='jupyter lab stop'
+alias mp_jll='jupyter lab list'
+alias mp_jld='cd ~ && jupyter lab --ip=0.0.0.0 --no-browser >/tmp/cron_jupyter.log 2>&1 &'
+alias mp_jksl='jupyter kernelspec list'
+alias mp_jksr='jupyter kernelspec remove'
 
 # Setting for Django manage.py auto-complete
 source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
@@ -219,6 +219,12 @@ alias mp_mysql='docker run -it --network local_tech --rm mysql mysql -hmysql -ur
 alias mp_redis='docker run -it --network local_tech --rm redis redis-cli -h redis'
 alias mp_postgres='docker run -it --network local_tech --rm postgres psql -h postgres -U postgres'
 alias mp_cassandra='docker run -it --network local_tech --rm cassandra cqlsh cassandra'
+alias mp_celery='celery -A backend worker -l INFO'
+alias mp_dev_build='docker build -t $(basename "$PWD"):latest --label build.version=noinput --build-arg BUILD_VERSION=noinput .'
+alias mp_dev_run='docker run -dit --network=local_tech --name $(basename "$PWD") --env-file=.env-docker $(basename "$PWD"):latest'
+alias mp_dev_runsh='docker run -dit --network=local_tech --name $(basename "$PWD") --env-file=.env-docker --entrypoint /bin/sh $(basename "$PWD"):latest'
+alias mp_dev_exec='docker exec -it $(basename "$PWD") sh'
+alias mp_dev_rm='docker rm $(basename "$PWD")'
 
 export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
 
