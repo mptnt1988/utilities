@@ -182,6 +182,9 @@ npm config set prefix '~/.npm-global'
 mp_add_PATH ~/.npm-global/bin/
 export NODE_PATH=~/.npm-global/lib/node_modules/
 
+# n - managing multiple NodeJS version
+export N_PREFIX="$HOME/programs/n"
+
 
 # DIRENV
 eval "$(direnv hook bash)"
