@@ -234,6 +234,7 @@ export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
 
 # ALIAS / CONSTANT
 #   directories
+alias cd_ghichu='cd ~/programs/ghichu/'
 alias cd_problems='cd ~/workspace/_works_/_side_pjs_/problems/'
 alias cd_utilities='cd ~/programs/utilities/'
 #   utilities
