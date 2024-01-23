@@ -172,7 +172,7 @@ source ~/programs/utilities/LinuxScripts/bashrc/django_bash_completion.sh
 
 
 # GOLANG
-[[ -s "/Users/shopeevn/.gvm/scripts/gvm" ]] && source "/Users/shopeevn/.gvm/scripts/gvm"
+[[ -s "~/.gvm/scripts/gvm" ]] && source "~/.gvm/scripts/gvm"
 
 
 # NODEJS - NPM
