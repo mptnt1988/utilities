@@ -138,12 +138,18 @@ mp_bind_keys
 mp_add_PATH ~/programs/_softs_/
 
 
-# PHP LARAVEL
-mp_add_PATH ~/.config/composer/vendor/bin/
-
-
 # CHANGE BASH PROMPT
 mp_change_PS1
+
+
+# ENVIRONMENT
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+# PIPX
+# "pipx install argcomplete" required
+eval "$(register-python-argcomplete pipx)"
 
 
 # PYTHON
