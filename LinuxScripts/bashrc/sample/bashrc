@@ -147,11 +147,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 
-# PIPX
-# "pipx install argcomplete" required
-eval "$(register-python-argcomplete pipx)"
-
-
 # PYTHON
 
 # Pyenv
@@ -236,6 +231,11 @@ alias mp_dev_exec='docker exec -it $(basename "$PWD") sh'
 alias mp_dev_rm='docker rm $(basename "$PWD")'
 
 export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
+
+
+# PIPX
+# "pipx install argcomplete" required
+eval "$(register-python-argcomplete pipx)"
 
 
 # ALIAS / CONSTANT

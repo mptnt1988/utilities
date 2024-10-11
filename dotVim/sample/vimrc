@@ -91,7 +91,7 @@ filetype plugin indent on    " required
 let g:SimpylFold_docstring_preview=1
 
 " Valloric/YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
+let g:ycm_path_to_python_interpreter = '/opt/homebrew/bin/python'
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -161,21 +161,3 @@ let python_highlight_all = 1
 syntax on
 
 
-" Python with virtual env support
-python3 << EOF
-import os
-import subprocess
-if 'CONDA_DEFAULT_ENV' in os.environ:
-  conda_env_name = os.environ['CONDA_DEFAULT_ENV']
-  process = subprocess.Popen(['which', 'conda'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  stdout, stderr = process.communicate()
-  if not stdout:
-    pass
-  else:
-    conda_app = stdout.decode().strip()
-    exec(open(conda_app).read(), dict(__file__=conda_app, commandline=['activate', conda_env_name]))
-elif 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_script = os.environ['HOME'] + '/programs/utilities/dotVim/supports/venv_activation/activate_this.py'
-  exec(open(activate_script).read(), dict(__file__=activate_script))
-EOF
