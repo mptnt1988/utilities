@@ -1,3 +1,7 @@
+# THIS FILE IS FOR NON-LOGIN INTERACTIVE SHELL
+
+echo "[mptuan] Non-Login Interactive Shell: Running $(realpath ${BASH_SOURCE[0]})"
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -118,8 +122,11 @@ fi
 
 
 # FOR MACOS
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # brew install bash-completion@2
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 
 # TMUX
@@ -127,7 +134,7 @@ fi
 
 
 # LOAD FUNCTIONS
-source ~/programs/utilities/LinuxScripts/bashrc/bash_funcs.sh
+source ~/programs/utilities/LinuxScripts/bash_shell/bash_funcs.sh
 
 
 # BIND KEYS
@@ -231,6 +238,10 @@ alias mp_dev_exec='docker exec -it $(basename "$PWD") sh'
 alias mp_dev_rm='docker rm $(basename "$PWD")'
 
 export HOST_VOLUME_ROOT_DIR=/Users/shopeevn/workspace/_srv/docker
+
+
+# MISE
+eval "$(mise activate bash)"
 
 
 # PIPX
